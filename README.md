@@ -25,7 +25,7 @@ on chain `10143`; the public
 [readiness check](https://taptab-eosin.vercel.app/api/health/ready)
 validates its bytecode and canonical bill `2`.
 
-The current Vercel production deployment is `dpl_oPsQP2xuZNZnYPoYVpZ59JCttate`.
+The current Vercel production deployment is `dpl_H4rRMxPLEBN3tg12Kp3sbxQxS9Sx`.
 Its root route, readiness route and canonical bill were rechecked on 8 August
 2026; the retained result is in
 [the Vercel deployment evidence](docs/submission/VERCEL_DEPLOYMENT_EVIDENCE.md).

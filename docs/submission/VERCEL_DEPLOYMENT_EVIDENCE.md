@@ -5,20 +5,19 @@
 - Stable application: <https://taptab-eosin.vercel.app/>
 - Canonical Bill 2: <https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live>
 - Readiness: <https://taptab-eosin.vercel.app/api/health/ready>
-- Vercel deployment: `dpl_oPsQP2xuZNZnYPoYVpZ59JCttate`
-- Immutable deployment URL: <https://taptab-ev5yn58i0-mythicmindlabs.vercel.app>
+- Vercel deployment: `dpl_H4rRMxPLEBN3tg12Kp3sbxQxS9Sx`
+- Immutable deployment URL: <https://taptab-bi3brgmyf-mythicmindlabs.vercel.app>
 - Vercel status at inspection: `Ready`
-- Deployment created: 8 August 2026 at 14:15:47 BST
+- Deployment created: 8 August 2026 at 14:45:15 BST
 
-The Vercel deployment was built from the local working tree and the application
-source, Vercel configuration and video release were subsequently preserved in
-public Git commit `bcac3ecb2250112c0f20b9b8925d34120987269e`. The Vercel
-deployment ID above remains the exact hosting-release identifier.
+The Vercel deployment was built from the clean local checkout at public Git
+commit `a2e19b282d4b5ee35c18491ce6e161eb5f44e2b3`. The Vercel deployment ID
+above remains the exact hosting-release identifier.
 
 ## Public readiness result
 
 After the final manifest repair was deployed, the public readiness route
-returned HTTP `200` at `2026-08-08T13:16:34.674Z`:
+returned HTTP `200` at `2026-08-08T13:46:01.402Z`:
 
 ```json
 {
@@ -32,11 +31,11 @@ returned HTTP `200` at `2026-08-08T13:16:34.674Z`:
   },
   "network": {
     "chainId": 10143,
-    "blockNumber": "51961837"
+    "blockNumber": "51967618"
   },
   "service": "taptab",
-  "checkedAt": "2026-08-08T13:16:34.674Z",
-  "durationMs": 193
+  "checkedAt": "2026-08-08T13:46:01.402Z",
+  "durationMs": 112
 }
 ```
 
