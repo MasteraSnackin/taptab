@@ -12,6 +12,12 @@ Diners claim whole or shared receipt items, agree a group tip, fund only their
 allocation and settle through a smart contract on Monad Testnet. It removes the
 usual need for one person to pay the entire bill and chase everyone afterwards.
 
+[![Friends reacting to an equal restaurant bill split](docs/submission/media/bill-payment-highlight.gif)](https://www.youtube.com/watch?v=EYb9jnt2cv4)
+
+The equal split lands differently around the table. Short silent highlight
+from *Friends*, “Five Steaks and an Eggplant”. [Open the original
+clip](https://www.youtube.com/watch?v=EYb9jnt2cv4).
+
 The application is designed for diners, bill organisers and venues. It includes
 a fully local sample experience for demonstrations and a contract-backed live
 workspace when a trusted TapTab deployment and wallet provider are configured.
