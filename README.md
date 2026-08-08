@@ -113,6 +113,15 @@ contract and canonical Bill `2`. It then displays the genuine historical Bill
 new wallet write. The final QR opens live Bill `2`, which is publicly readable
 and remains `Draft`; Testnet MON is disclosed as having no cash value.
 
+### Bill-paying comedy slide preview
+
+![Animated preview of the four bill-paying comedy slides](docs/submission/slides/bill-paying-comedy-highlights-preview.gif)
+
+The 12-second GIF cycles through every slide at full-frame 1280 × 720 without
+cropping. This is a supplementary problem opener, not the complete TapTab pitch;
+use the [evidence-backed written pitch](docs/submission/PITCH.md) for the product,
+architecture, Monad rationale and judging narrative.
+
 ### Retained video sources and records
 
 | File | Purpose |
@@ -142,6 +151,7 @@ claim that the corresponding binaries are downloadable from this repository.
 | --- | --- |
 | [Submission guide](docs/submission/README.md) | Canonical submission entry point and current release status |
 | [Pitch](docs/submission/PITCH.md) | Problem, product, Monad fit and evidence-backed demo script |
+| [Comedy slide preview](docs/submission/slides/bill-paying-comedy-highlights-preview.gif) | Lightweight animated preview of the four-slide problem opener |
 | [Architecture](docs/submission/ARCHITECTURE.md) | Application, wallet, RPC and contract boundaries |
 | [Three-minute judging runbook](docs/judging/LOCAL_RUNBOOK.md) | Fixed local demonstration sequence and evidence guidance |
 | [Markdown task completion record](docs/MARKDOWN_TASK_COMPLETION.md) | Consolidated completion and verification record |
