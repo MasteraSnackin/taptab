@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#5f4cf6",
+  themeColor: "#0e6574",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

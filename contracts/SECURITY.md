@@ -1,6 +1,6 @@
 # Contract development-tool security boundary
 
-**Reviewed:** 7 August 2026
+**Reviewed:** 8 August 2026
 
 TapTab's Solidity source has no runtime npm dependency. The packages in this
 directory are development tools used to compile, test, rehearse and deploy the

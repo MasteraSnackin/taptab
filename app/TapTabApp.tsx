@@ -41,7 +41,11 @@ import {
   type ItemClaim,
   type ReceiptItem,
 } from "./taptab-model";
-import { tapTabDeployment, type TapTabContext } from "./taptab-chain";
+import {
+  TAPTAB_MONAD_TESTNET,
+  tapTabDeployment,
+  type TapTabContext,
+} from "./taptab-chain";
 import {
   TapTabLivePanel,
   type TapTabLiveUpdate,
@@ -116,7 +120,7 @@ const INITIAL_PARTICIPANTS: readonly Participant[] = [
     id: "you",
     name: "You",
     initials: "YO",
-    colour: "#5f4cf6",
+    colour: "#0e6574",
     remainderOptIn: true,
     tipVoteBps: 1_250,
   },
@@ -216,7 +220,7 @@ const PHASE_LABELS: Record<BillPhase, string> = {
 };
 
 const TIP_PRESETS = [0, 1_000, 1_250] as const;
-const STAGE_AVATAR_COLOURS = ["#5f4cf6", "#c84f3a", "#11866f", "#a65f00"] as const;
+const STAGE_AVATAR_COLOURS = ["#0e6574", "#c84f3a", "#11866f", "#a65f00"] as const;
 
 const GUIDED_DEMO_STEPS = [
   {
@@ -299,6 +303,20 @@ function copyClaims(claims: readonly ItemClaim[]) {
   }));
 }
 
+function liveReceiptFingerprint(
+  merchant: string,
+  items: readonly ReceiptItem[],
+) {
+  return JSON.stringify({
+    merchant,
+    items: items.map((item) => ({
+      name: item.name,
+      pricePence: item.pricePence,
+      shareSlots: item.shareSlots,
+    })),
+  });
+}
+
 function feedIcon(kind: FeedEvent["kind"]) {
   if (kind === "payment") return <Check size={14} strokeWidth={2.7} />;
   if (kind === "vote") return <Vote size={14} />;
@@ -370,9 +388,12 @@ export function TapTabApp() {
     shareUrl: "",
   });
   const [lastCreatedBill, setLastCreatedBill] = useState<TapTabCreatedBill>();
+  const [lastCreatedReceiptFingerprint, setLastCreatedReceiptFingerprint] =
+    useState<string>();
   const stageDialogRef = useRef<HTMLDivElement>(null);
   const stageCloseButtonRef = useRef<HTMLButtonElement>(null);
   const receiptSummaryRef = useRef<HTMLElement>(null);
+  const liveReceiptSummaryRef = useRef<HTMLElement>(null);
 
   const handleLiveUpdate = useCallback((update: TapTabLiveUpdate) => {
     setLiveUpdate(update);
@@ -474,6 +495,7 @@ export function TapTabApp() {
       ? Math.round((approvedParticipantIds.length / participants.length) * 100)
       : progress;
   const liveSnapshot = liveUpdate.snapshot;
+  const currentLiveReceiptFingerprint = liveReceiptFingerprint(merchant, receiptItems);
   const liveStage =
     workspaceMode === "live" && liveConfigured && liveSnapshot !== null;
   const lastCreatedBillMatchesLiveContext = Boolean(
@@ -483,43 +505,106 @@ export function TapTabApp() {
           lastCreatedBill.context.address.toLowerCase() ===
             liveSnapshot.context.address.toLowerCase())),
   );
+  const lastCreatedBillMatchesReceipt = Boolean(
+    lastCreatedBill &&
+      lastCreatedReceiptFingerprint === currentLiveReceiptFingerprint,
+  );
+  const liveBillMatchesReceipt = Boolean(
+    liveSnapshot &&
+      liveUpdate.metadata?.merchant === merchant &&
+      liveUpdate.metadata.items?.length === receiptItems.length &&
+      liveSnapshot.items.length === receiptItems.length &&
+      receiptItems.every(
+        (item, index) =>
+          liveUpdate.metadata?.items?.[index]?.name === item.name &&
+          liveUpdate.metadata?.items?.[index]?.amountPence === item.pricePence &&
+          liveSnapshot.items[index]?.shareCount === item.shareSlots,
+      ),
+  );
+  const hostBillMatchesReceipt = Boolean(
+    liveBillMatchesReceipt ||
+      (lastCreatedBillMatchesLiveContext && lastCreatedBillMatchesReceipt),
+  );
   const hostQuote =
     liveUpdate.metadata?.quote ??
     (lastCreatedBillMatchesLiveContext ? lastCreatedBill?.quote : undefined) ??
     createBillQuote;
-  const hostBillContext = liveSnapshot?.context ?? lastCreatedBill?.context;
   const hostQuoteDetail = hostQuote
     ? `£${hostQuote.gbpPerMon} per MON · ${hostQuote.source}`
     : "Wait for a current or acknowledged fallback quote.";
-  const hostBillDetail = liveSnapshot
-    ? `Trusted bill #${liveSnapshot.context.billId.toString()} loaded from Monad Testnet.`
-    : lastCreatedBill
-      ? `Bill #${lastCreatedBill.context.billId.toString()} confirmed in block ${lastCreatedBill.blockNumber.toString()}.`
-      : "Create or recover a trusted contract-backed bill.";
+  const hostOwnsLiveBill = Boolean(
+    wallet.account &&
+      liveSnapshot &&
+      wallet.account.toLowerCase() === liveSnapshot.bill.creator.toLowerCase(),
+  );
+  const hostBillDetail =
+    !hostBillMatchesReceipt && (lastCreatedBillMatchesLiveContext || hostOwnsLiveBill)
+      ? "The bill fields changed after this bill was created. Create a fresh bill before continuing the guided proof."
+      : lastCreatedBillMatchesLiveContext && lastCreatedBill
+        ? `Bill #${lastCreatedBill.context.billId.toString()} confirmed in block ${lastCreatedBill.blockNumber.toString()}.`
+        : liveSnapshot && hostOwnsLiveBill
+          ? `Your creator wallet controls trusted bill #${liveSnapshot.context.billId.toString()}.`
+          : liveSnapshot
+            ? `Public bill #${liveSnapshot.context.billId.toString()} is loaded. Create a fresh bill if this wallet is not its host.`
+            : lastCreatedBill
+              ? `Bill #${lastCreatedBill.context.billId.toString()} confirmed in block ${lastCreatedBill.blockNumber.toString()}.`
+              : "Create or recover a trusted contract-backed bill.";
   const hostCanInvite = Boolean(
     wallet.account &&
       liveSnapshot?.phase === "draft" &&
       wallet.account.toLowerCase() === liveSnapshot.bill.creator.toLowerCase(),
   );
+  const confirmedInvitationEvents = liveUpdate.events.filter(
+    (event) => event.eventName === "ParticipantInvited",
+  );
+  const hostInvitationsConfirmed =
+    confirmedInvitationEvents.length > 0 || (liveSnapshot?.participants.length ?? 0) > 0;
   const hostInvitationDetail = liveSnapshot
-    ? liveSnapshot.participants.length > 1
-      ? `${liveSnapshot.participants.length} wallets have joined this bill.`
-      : hostCanInvite
-        ? "The host invitation form is ready for wallet addresses."
-        : liveSnapshot.phase === "draft"
-          ? "Connect the bill creator wallet to open invitations."
-          : "This bill has moved beyond its invitation phase."
+    ? confirmedInvitationEvents.length > 0
+      ? `${confirmedInvitationEvents.length} participant invitation${confirmedInvitationEvents.length === 1 ? "" : "s"} confirmed on Monad Testnet.`
+      : liveSnapshot.participants.length > 0
+        ? `${liveSnapshot.participants.length} participant wallet${liveSnapshot.participants.length === 1 ? " has" : "s have"} joined this bill.`
+        : hostCanInvite
+          ? "Fill one or more participant wallet addresses, then approve the invitation transaction."
+          : liveSnapshot.phase === "draft"
+            ? "Connect the bill creator wallet to open invitations."
+            : "This bill has moved beyond its invitation phase."
     : "Load a trusted bill before inviting wallet addresses.";
   const latestMeasuredConfirmation =
+    lastCreatedBillMatchesLiveContext &&
     lastCreatedBill &&
     (!liveUpdate.latestConfirmation ||
       lastCreatedBill.confirmedAt > liveUpdate.latestConfirmation.confirmedAt)
       ? {
           action: "Create live bill",
+          transactionHash: lastCreatedBill.transactionHash,
           blockNumber: lastCreatedBill.blockNumber,
           confirmationMs: lastCreatedBill.confirmationMs,
         }
       : liveUpdate.latestConfirmation;
+  const latestExplorerEvent =
+    (liveSnapshot?.phase === "settled"
+      ? liveUpdate.events.find(
+          (event) => event.eventName === "BillSettled" && event.explorerUrl,
+        )
+      : undefined) ?? liveUpdate.events.find((event) => event.explorerUrl);
+  const explorerEventIsNewer = Boolean(
+    latestExplorerEvent &&
+      (!latestMeasuredConfirmation ||
+        (latestExplorerEvent.blockNumber ?? 0n) >= latestMeasuredConfirmation.blockNumber),
+  );
+  const hostProofUrl = explorerEventIsNewer
+    ? latestExplorerEvent?.explorerUrl
+    : latestMeasuredConfirmation?.transactionHash
+      ? `${TAPTAB_MONAD_TESTNET.blockExplorers.default.url}/tx/${latestMeasuredConfirmation.transactionHash}`
+      : latestExplorerEvent?.explorerUrl;
+  const hostProofDetail = explorerEventIsNewer && latestExplorerEvent
+    ? `${latestExplorerEvent.title} confirmed${latestExplorerEvent.blockNumber ? ` in block ${latestExplorerEvent.blockNumber.toString()}` : ""}.`
+    : latestMeasuredConfirmation
+      ? `${latestMeasuredConfirmation.action} confirmed in block ${latestMeasuredConfirmation.blockNumber.toString()}.`
+      : latestExplorerEvent
+        ? `${latestExplorerEvent.title} has independently inspectable Monad evidence.`
+        : "Complete any wallet action to reveal its transaction hash, block and explorer proof.";
   const liveFailed =
     liveSnapshot?.phase === "cancelled" || liveSnapshot?.phase === "expired";
   const liveTerminal = liveFailed || liveSnapshot?.phase === "settled";
@@ -532,6 +617,28 @@ export function TapTabApp() {
     liveSnapshot?.items.reduce((total, item) => total + item.shareCount, 0) ?? 0;
   const liveApprovalCount = liveSnapshot?.splitStatus.approvalCount ?? 0;
   const liveRequiredApprovals = liveSnapshot?.splitStatus.requiredApprovals ?? 0;
+  const hostParticipationComplete = Boolean(
+    liveSnapshot &&
+      liveSnapshot.participants.length > 0 &&
+      liveRequiredApprovals > 0 &&
+      liveApprovalCount === liveRequiredApprovals,
+  );
+  const hostParticipationDetail = !liveSnapshot
+    ? "Create or open a trusted bill before participants can join."
+    : liveSnapshot.participants.length === 0
+      ? "Invite a wallet, then use that wallet to join, claim items and approve the split."
+      : hostParticipationComplete
+        ? `${liveSnapshot.participants.length} participant wallet${liveSnapshot.participants.length === 1 ? "" : "s"} completed the approved split.`
+        : `${liveApprovalCount} of ${liveRequiredApprovals} participant wallets approved this split.`;
+  const hostPaymentDetail = !liveSnapshot
+    ? "A trusted live bill is required before Testnet MON can move."
+    : liveSnapshot.phase === "settled"
+      ? `The exact bill settled with ${formatTapTabAmount(liveSnapshot.bill.totalFunded, liveUpdate.quote).primary}.`
+      : liveSnapshot.phase === "funding"
+        ? `${formatTapTabAmount(liveSnapshot.bill.remainingToFund, liveUpdate.quote).primary} remains before permissionless settlement.`
+        : liveSnapshot.phase === "cancelled" || liveSnapshot.phase === "expired"
+          ? "This bill ended safely; contributors can pull their own refunds."
+          : "Finish unanimous approval, open funding and confirm the exact payment in a wallet.";
   const livePrivateNameByAddress = useMemo(
     () =>
       new Map(
@@ -916,6 +1023,9 @@ export function TapTabApp() {
 
   const openCreatedBill = (created: TapTabCreatedBill) => {
     setLastCreatedBill(created);
+    setLastCreatedReceiptFingerprint(
+      liveReceiptFingerprint(merchant, receiptItems),
+    );
     setWorkspaceMode("live");
     setReceiptStudioOpen(false);
     const url = new URL(window.location.href);
@@ -1196,7 +1306,9 @@ export function TapTabApp() {
       setReceiptStudioOpen(false);
       setReceiptAppliedStatus("Receipt already up to date.");
       setDinerFeedback(undefined);
-      window.requestAnimationFrame(() => receiptSummaryRef.current?.focus());
+      window.requestAnimationFrame(() =>
+        (workspaceMode === "live" ? liveReceiptSummaryRef : receiptSummaryRef).current?.focus(),
+      );
       addFeed("Receipt already verified", "No split state changed", "safety");
       return;
     }
@@ -1210,7 +1322,9 @@ export function TapTabApp() {
     setReceiptAppliedStatus(
       `Receipt applied. ${nextItems.length} verified row${nextItems.length === 1 ? "" : "s"} ready to claim.`,
     );
-    window.requestAnimationFrame(() => receiptSummaryRef.current?.focus());
+    window.requestAnimationFrame(() =>
+      (workspaceMode === "live" ? liveReceiptSummaryRef : receiptSummaryRef).current?.focus(),
+    );
     invalidateSplitApprovals();
     addFeed(
       `${receipt.merchant} receipt applied`,
@@ -1725,16 +1839,20 @@ export function TapTabApp() {
       </header>
 
       <main id="top">
-        <section className="tap-hero diner-entry">
-          <div className="hero-copy diner-entry-copy">
+        <section className="tap-hero editorial-entry">
+          <div className="hero-copy">
             <p className="eyebrow">
-              <span>You’re joining Table 7</span>
-              <span>{participants.length} diners</span>
+              <span>Built for real tables</span>
+              <span>Settlement contract included</span>
             </p>
-            <h1>Claim what you had. Pay only your part.</h1>
+            <h1>
+              <span>Nobody fronts</span>
+              <em>the bill.</em>
+            </h1>
             <p className="hero-lede">
-              Start with your items. TapTab then guides you through shared extras, the
-              group tip, your pound total and a protected payment.
+              Photograph the receipt, claim what you had, approve the split and pay
+              together. Shared plates, tips, sponsors and refunds are handled without a
+              spreadsheet or one awkward volunteer.
             </p>
             <div className="hero-actions">
               <button
@@ -1742,10 +1860,17 @@ export function TapTabApp() {
                 type="button"
                 onClick={startGuidedDemo}
               >
-                Try TapTab <ArrowRight size={17} />
+                Try sample bill <ArrowRight size={17} />
+              </button>
+              <button
+                className="secondary-cta"
+                type="button"
+                onClick={() => openWorkspace("live", "host-journey-title")}
+              >
+                <Wallet size={16} /> Run live Testnet demo
               </button>
               <button className="secondary-cta" type="button" onClick={() => setStageMode(true)}>
-                <Maximize2 size={16} /> Guided demo
+                <Maximize2 size={16} /> Open Stage mode
               </button>
               {canPromptInstall ? (
                 <button
@@ -1766,10 +1891,10 @@ export function TapTabApp() {
             ) : null}
             <div className="hero-proof" aria-label="TapTab protections">
               <span>
-                <ShieldCheck size={16} /> Correct amount protected
+                <ShieldCheck size={16} /> Exact funding only
               </span>
               <span>
-                <RefreshCw size={15} /> Refunds if it ends
+                <RefreshCw size={15} /> Pull refunds
               </span>
               <span>
                 <CirclePoundSterling size={16} /> GBP first
@@ -1777,13 +1902,13 @@ export function TapTabApp() {
             </div>
           </div>
 
-          <div className="hero-demo diner-entry-summary" aria-label="Your Table 7 summary">
+          <div className="hero-demo" aria-label="Your Table 7 summary">
             <div className="hero-demo-top">
               <div>
                 <span className="micro-label">Table 7</span>
                 <strong>{merchant}</strong>
               </div>
-              <span className="preview-badge">Ready to claim</span>
+              <span className="preview-badge">Interactive preview</span>
             </div>
             <div className="hero-total-row">
               <div>
@@ -1803,20 +1928,20 @@ export function TapTabApp() {
             </div>
             <div className="hero-rule" />
             <div className="hero-split-row">
-                <span>Your current total</span>
+              <span>Your sample share</span>
               <strong>{money(currentUser?.totalDuePence ?? 0)}</strong>
             </div>
             <div className="hero-mini-items">
               <span>{receiptItems[0]?.name ?? "Receipt item"}</span>
               <span>{receiptItems.length} verified rows</span>
-              <span>Unclaimed extras shared by volunteers</span>
+              <span>Fair remainder</span>
               <span>{percentage(preview.medianTipVoteBps)} tip</span>
             </div>
             <div className="protection-banner">
               <LockKeyhole size={17} />
               <div>
-                <strong>You will see the exact pound total before paying</strong>
-                <span>The bill cannot complete until every share is covered.</span>
+                <strong>Protected until everyone is in</strong>
+                <span>The bill cannot settle short.</span>
               </div>
             </div>
           </div>
@@ -1826,15 +1951,15 @@ export function TapTabApp() {
           <div>
             <Split size={20} />
             <span>
-              <strong>Split shared things</strong>
-              Choose who shared food, wine or the taxi
+              <strong>Shared items</strong>
+              Select exactly who shared it
             </span>
           </div>
           <div>
             <Vote size={20} />
             <span>
-              <strong>Choose the tip together</strong>
-              Everyone gets an equal vote
+              <strong>Median tip vote</strong>
+              A group choice, locked once approved
             </span>
           </div>
           <div>
@@ -1847,8 +1972,8 @@ export function TapTabApp() {
           <div>
             <RefreshCw size={20} />
             <span>
-              <strong>Payments stay protected</strong>
-              Cancelled contributions can be refunded
+              <strong>Failure-safe</strong>
+              Cancelled funds stay refundable
             </span>
           </div>
         </section>
@@ -2369,7 +2494,7 @@ export function TapTabApp() {
               </div>
               <article className="control-card" hidden={dinerClaimStep !== "shared"}>
                 <div className="card-title-row">
-                  <div className="icon-box violet">
+                  <div className="icon-box accent">
                     <Vote size={18} />
                   </div>
                   <div>
@@ -2922,7 +3047,7 @@ export function TapTabApp() {
 
               <article className="control-card">
                 <div className="card-title-row">
-                  <div className="icon-box violet">
+                  <div className="icon-box accent">
                     <HandCoins size={18} />
                   </div>
                   <div>
@@ -3108,12 +3233,38 @@ export function TapTabApp() {
               </div>
 
               <TapTabHostJourney
+                wallet={{
+                  detail:
+                    wallet.account && wallet.provider
+                      ? liveUpdate.walletSessionStatus === "ready"
+                        ? `${shortTapTabAddress(wallet.account)} is connected and ready on Monad Testnet.`
+                        : liveUpdate.walletSessionStatus === "wrong-network"
+                          ? `${shortTapTabAddress(wallet.account)} is connected. Confirm the switch to Monad Testnet before continuing.`
+                          : `${shortTapTabAddress(wallet.account)} is connected while TapTab verifies Monad Testnet readiness.`
+                      : "Choose email, social sign-in or a normal EVM wallet. There is no separate Monad account.",
+                  status:
+                    wallet.account &&
+                    wallet.provider &&
+                    liveUpdate.walletSessionStatus === "ready"
+                      ? "complete"
+                      : wallet.enabled
+                        ? "ready"
+                        : "waiting",
+                  href: "#live-wallet-title",
+                  onOpen: () => {
+                    if (wallet.account && wallet.provider) {
+                      openWorkspace("live", "live-wallet-title");
+                    } else {
+                      wallet.open();
+                    }
+                  },
+                  disabled: !wallet.enabled,
+                }}
                 receipt={{
-                  detail: `${receiptItems.length} verified row${receiptItems.length === 1 ? "" : "s"} · ${merchant}`,
+                  detail: `${receiptItems.length} verified row${receiptItems.length === 1 ? "" : "s"} · ${merchant}. Merchant, item, GBP price and share fields are editable.`,
                   status: "complete",
-                  href: "#host-verify-receipt",
-                  onOpen: () =>
-                    openWorkspace("preview", "host-verify-receipt", true),
+                  href: "#host-live-receipt-fields",
+                  onOpen: () => openWorkspace("live", "host-live-receipt-fields"),
                 }}
                 quote={{
                   detail: hostQuoteDetail,
@@ -3129,9 +3280,11 @@ export function TapTabApp() {
                 }}
                 createBill={{
                   detail: hostBillDetail,
-                  status: hostBillContext
-                    ? "complete"
-                    : hostQuote
+                  status:
+                    hostBillMatchesReceipt &&
+                    (lastCreatedBillMatchesLiveContext || hostOwnsLiveBill)
+                      ? "complete"
+                      : hostQuote && wallet.account && wallet.provider
                       ? "ready"
                       : "waiting",
                   href: "#host-create-testnet-bill",
@@ -3141,32 +3294,100 @@ export function TapTabApp() {
                 invitations={{
                   detail: hostInvitationDetail,
                   status:
-                    (liveSnapshot?.participants.length ?? 0) > 1
+                    hostBillMatchesReceipt && hostInvitationsConfirmed
                       ? "complete"
                       : hostCanInvite
                         ? "ready"
                         : "waiting",
                   href: "#live-host-title",
                   onOpen: () => openWorkspace("live", "live-host-title"),
-                  disabled: !hostCanInvite,
+                  disabled: !hostBillMatchesReceipt || !hostCanInvite,
                 }}
-                audience={{
-                  detail: liveUpdate.shareUrl
-                    ? "The canonical trusted contract and bill link is ready."
-                    : "Wait for the trusted live snapshot and canonical link.",
-                  status: liveUpdate.shareUrl ? "ready" : "waiting",
-                  href: liveUpdate.shareUrl || "#live",
-                  external: Boolean(liveUpdate.shareUrl),
-                  disabled: !liveUpdate.shareUrl,
+                participation={{
+                  detail: hostParticipationDetail,
+                  status: hostBillMatchesReceipt && hostParticipationComplete
+                    ? "complete"
+                    : (liveSnapshot?.participants.length ?? 0) > 0
+                      ? "ready"
+                      : "waiting",
+                  href: "#live-items-title",
+                  onOpen: () => openWorkspace("live", "live-items-title"),
+                  disabled:
+                    !hostBillMatchesReceipt ||
+                    !liveSnapshot ||
+                    liveSnapshot.participants.length === 0,
+                }}
+                payment={{
+                  detail: hostPaymentDetail,
+                  status:
+                    hostBillMatchesReceipt && liveSnapshot?.phase === "settled"
+                      ? "complete"
+                      : liveSnapshot?.phase === "funding"
+                        ? "ready"
+                        : "waiting",
+                  href: liveSnapshot?.phase === "settled" ? "#live-settlement-proof" : "#pay",
+                  onOpen: () =>
+                    openWorkspace(
+                      "live",
+                      liveSnapshot?.phase === "settled" ? "live-settlement-proof" : "pay",
+                    ),
+                  disabled:
+                    !hostBillMatchesReceipt ||
+                    !liveSnapshot ||
+                    (liveSnapshot.phase !== "funding" && liveSnapshot.phase !== "settled"),
+                }}
+                proof={{
+                  detail: hostBillMatchesReceipt
+                    ? hostProofDetail
+                    : "Create a bill from the fields currently shown before presenting its transaction proof.",
+                  status: hostBillMatchesReceipt && hostProofUrl ? "complete" : "waiting",
+                  href: hostProofUrl || "#live-technical-details",
+                  external: Boolean(hostProofUrl),
+                  disabled: !hostBillMatchesReceipt || !hostProofUrl,
                 }}
               />
 
-              <TapTabLivePanel active onLiveUpdate={handleLiveUpdate} />
+              <details
+                id="host-live-receipt-fields"
+                className="tool-disclosure host-chain-tools organiser-area"
+                data-testid="live-bill-fields"
+                open={receiptStudioOpen}
+                onToggle={(event) => setReceiptStudioOpen(event.currentTarget.open)}
+              >
+                <summary ref={liveReceiptSummaryRef} tabIndex={-1}>
+                  <span>
+                    <strong>Step 2 · fill the live bill fields</strong>
+                    <small>
+                      Enter the merchant, item names, GBP prices and shared-item counts used for
+                      the Testnet bill.
+                    </small>
+                  </span>
+                  <span aria-hidden="true">{receiptStudioOpen ? "Close" : "Open fields"}</span>
+                </summary>
+                <div className="tool-disclosure-content">
+                  <ReceiptImportPanel
+                    key={`live\u0000${merchant}\u0000${receiptItems
+                      .map((item) => `${item.id}:${item.name}:${item.pricePence}:${item.shareSlots}`)
+                      .join("|")}`}
+                    currentMerchant={merchant}
+                    currentItems={receiptItems}
+                    disabled={phase !== "claiming"}
+                    onApply={applyImportedReceipt}
+                  />
+                  {phase !== "claiming" ? (
+                    <p className="field-error" role="status">
+                      Reset the local sample before changing the receipt. This protects any sample
+                      allocation already in progress.
+                    </p>
+                  ) : null}
+                </div>
+              </details>
 
               {tapTabDeployment.status === "configured" ? (
                 <details
                   className="tool-disclosure host-chain-tools organiser-area"
                   id="host-create-testnet-bill"
+                  data-testid="live-create-bill-fields"
                 >
                   <summary>
                     <span>
@@ -3191,6 +3412,8 @@ export function TapTabApp() {
                   </div>
                 </details>
               ) : null}
+
+              <TapTabLivePanel active onLiveUpdate={handleLiveUpdate} />
             </div>
           ) : null}
 

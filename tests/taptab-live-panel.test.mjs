@@ -809,6 +809,44 @@ test("uses fail-closed batched invitations and selectable atomic share claims", 
   assert.match(source, /disabled=\{selectedClaimKeys\.length === 0 \|\| transactionBusy\}/);
 });
 
+test("guides participants to claim before approval and exposes live proof hooks", async () => {
+  const source = await readFile(
+    new URL("../app/TapTabLivePanel.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(
+    source,
+    /<label htmlFor="live-invite-address">Participant wallets<\/label>[\s\S]*?<textarea[\s\S]*?id="live-invite-address"[\s\S]*?data-testid="participant-wallets-field"/,
+  );
+
+  const primaryTaskStart = source.indexOf("const livePrimaryTask");
+  const primaryTaskEnd = source.indexOf("return (", primaryTaskStart);
+  assert.notEqual(primaryTaskStart, -1);
+  assert.notEqual(primaryTaskEnd, -1);
+  const primaryTask = source.slice(primaryTaskStart, primaryTaskEnd);
+  assert.match(
+    primaryTask,
+    /activeAccount\?\.participant\.joined[\s\S]*?!activeAccount\.approvedCurrentSplit[\s\S]*?if \(!ownsItemShares && availableClaimKeys\.length > 0\) \{[\s\S]*?title: "Claim items before approval"[\s\S]*?href: "#live-items-title"[\s\S]*?title: "Check and approve your split"[\s\S]*?href: "#live-approval-title"/,
+    "a participant with available shares must claim before approval, while a zero-item allocation remains approvable",
+  );
+  assert.match(
+    source,
+    /\{ownsItemShares \? \([\s\S]*?<a className="quiet-button" href="#live-approval-title">[\s\S]*?Review and approve my updated split/,
+    "the approval route should appear after a participant has claimed a share",
+  );
+
+  const activityHookIndex = source.indexOf('data-testid="confirmed-testnet-activity"');
+  assert.notEqual(activityHookIndex, -1);
+  const activityEnd = source.indexOf("</details>", activityHookIndex);
+  assert.notEqual(activityEnd, -1);
+  const activityDisclosure = source.slice(activityHookIndex, activityEnd);
+  assert.match(activityDisclosure, /Confirmed Monad activity/);
+  assert.match(activityDisclosure, /event\.explorerUrl/);
+  assert.match(activityDisclosure, /href=\{event\.explorerUrl\}/);
+  assert.match(activityDisclosure, /target="_blank" rel="noreferrer"/);
+});
+
 test("reports measured Monad confirmation time and polls faster only while pending", async () => {
   const source = await readFile(
     new URL("../app/TapTabLivePanel.tsx", import.meta.url),

@@ -30,11 +30,12 @@ test("server-renders the TapTab product experience", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>TapTab — Nobody fronts the bill<\/title>/i);
-  assert.match(html, /Claim what you had\. Pay only your part\./i);
+  assert.match(html, /Nobody fronts/i);
+  assert.match(html, /the bill\./i);
   assert.match(html, /Lina Stores/);
   assert.match(
     html,
-    /Start with your items\. TapTab then guides you/i,
+    /Photograph the receipt, claim what you had/i,
   );
   assert.match(html, /Receipt studio/i);
   assert.match(html, /Organiser &amp; demo controls/i);
@@ -46,7 +47,7 @@ test("server-renders the TapTab product experience", async () => {
   assert.match(html, /Sponsor someone/);
   assert.match(html, /Protected payment/);
   assert.match(html, /Safe ending rehearsal/);
-  assert.match(html, /Guided demo/);
+  assert.match(html, /Open Stage mode/);
   assert.match(html, /Sample preview/);
   assert.match(html, /Local judge rehearsal/);
   assert.match(html, /Local judge evidence/);
@@ -55,7 +56,7 @@ test("server-renders the TapTab product experience", async () => {
   assert.match(html, /mainnet spot price/i);
   assert.match(html, /Testnet MON is not cash/i);
   assert.match(html, /Settle or refund/i);
-  assert.match(html, /Try TapTab/i);
+  assert.match(html, /Try sample bill/i);
   assert.match(html, /without connecting a wallet/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
@@ -80,7 +81,7 @@ test("keeps the finished site free of starter metadata and dependencies", async 
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(tapTabApp, /Sponsor someone/);
   assert.match(tapTabApp, /Simulate expiry/);
-  assert.match(tapTabApp, /Guided demo/);
+  assert.match(tapTabApp, /Open Stage mode/);
   assert.match(tapTabApp, /TapTab Local Demo/);
   assert.match(tapTabApp, /Simulated table activity/);
   assert.match(tapTabApp, /no Monad receipt is claimed/);
@@ -103,7 +104,7 @@ test("keeps the default preview journey diner-first and the demo controls separa
     "Review",
     "Pay",
     "Receipt",
-    "Try TapTab",
+    "Try sample bill",
     "Assign another diner",
     "Organiser &amp; demo controls",
     "TapTabSettlementReceipt",
@@ -114,7 +115,10 @@ test("keeps the default preview journey diner-first and the demo controls separa
   assert.match(tapTabApp, /aria-label=\{`\$\{youClaimed \? "Release" : "Claim"\} \$\{item\.name\} for yourself`\}/);
   assert.match(tapTabApp, /className="other-diners-disclosure"/);
   assert.match(tapTabApp, /role="status"\s+aria-live="polite"/);
-  assert.match(tapTabApp, /receiptSummaryRef\.current\?\.focus\(\)/);
+  assert.match(
+    tapTabApp,
+    /\(workspaceMode === "live" \? liveReceiptSummaryRef : receiptSummaryRef\)\.current\?\.focus\(\)/,
+  );
   assert.match(tapTabApp, /className="tap-mobile-nav"/);
   assert.match(tapTabApp, /className="bill-grid" hidden=\{phase !== "claiming"\}/);
 });
