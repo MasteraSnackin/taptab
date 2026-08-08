@@ -283,9 +283,7 @@ does not present them as confirmed Monad transactions.
 
 A live bill can be selected with a trusted contract and positive bill ID:
 
-~~~text
-https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live
-~~~
+[Open canonical live bill `2`](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
 
 Shared links cannot replace the contract address built into the application.
 
@@ -406,8 +404,8 @@ The root <code>.env.local</code> and <code>contracts/.env</code> files are ignor
 - **Local demo:** run <code>npm run dev</code>, then open
   [http://localhost:3000](http://localhost:3000).
 - **Public Monad Testnet application:**
-  [open canonical bill `2`](https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
-  The [readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+  [open canonical bill `2`](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
+  The [readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
   passes against chain `10143`, the deployed bytecode and bill `2`.
 - **Local judge sequence:** follow
   [docs/judging/LOCAL_RUNBOOK.md](docs/judging/LOCAL_RUNBOOK.md), open the
@@ -459,7 +457,7 @@ curl http://localhost:3000/api/health/ready
 ~~~
 
 The public
-[readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+[readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
 currently returns HTTP <code>200</code>. An unconfigured or unhealthy build fails
 closed with HTTP <code>503</code>, a stable reason code and
 <code>retry-after: 10</code>, without exposing its RPC URL or raw provider error.
