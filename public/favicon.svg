@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TapTab">
   <rect x="10" y="12" width="46" height="46" rx="15" fill="#A8EFB1"/>
-  <path d="M8 5h36c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H20C13.373 53 8 47.627 8 41V5Z" fill="#5F4CF6"/>
+  <path d="M8 5h36c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H20C13.373 53 8 47.627 8 41V5Z" fill="#0E6574"/>
   <path d="M20 17h26v7h-9v21h-8V24h-9v-7Z" fill="#FFFDF9"/>
 </svg>

@@ -1,6 +1,6 @@
 # Markdown task completion record
 
-**Date:** 7 August 2026
+**Date:** 8 August 2026
 
 **Scope:** locally testable TapTab work requested by the nine supplied Markdown
 briefs, followed by public Testnet configuration

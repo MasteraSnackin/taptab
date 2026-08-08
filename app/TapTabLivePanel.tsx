@@ -273,6 +273,8 @@ export type TapTabLiveUpdate = Readonly<{
   shareUrl: string;
   privateNames?: readonly TapTabPrivateName[];
   latestConfirmation?: TapTabConfirmationMeasurement;
+  walletSessionStatus?: WalletSessionState["status"];
+  walletChainId?: number;
 }>;
 
 type TransactionStatus =
@@ -1778,6 +1780,10 @@ export function TapTabLivePanel({
       shareUrl: callbackSnapshot ? shareUrl : "",
       privateNames: callbackSnapshot ? privateNamesForBill : [],
       ...(latestConfirmation ? { latestConfirmation } : {}),
+      walletSessionStatus: walletSession.status,
+      ...(walletSession.chainId !== undefined
+        ? { walletChainId: walletSession.chainId }
+        : {}),
     });
   }, [
     callbackSnapshot,
@@ -1789,6 +1795,8 @@ export function TapTabLivePanel({
     privateNamesForBill,
     quote,
     shareUrl,
+    walletSession.chainId,
+    walletSession.status,
   ]);
 
   const submitTransaction = useCallback(
@@ -3184,9 +3192,20 @@ export function TapTabLivePanel({
         activeAccount?.participant.joined &&
         !activeAccount.approvedCurrentSplit
       ) {
+        if (!ownsItemShares && availableClaimKeys.length > 0) {
+          return {
+            title: "Claim items before approval",
+            detail:
+              "Select what you had first. Claiming later changes the split and invalidates every earlier approval.",
+            label: "Claim my items",
+            href: "#live-items-title",
+          };
+        }
         return {
           title: "Check and approve your split",
-          detail: "Review the claimed items and current digest before approving this exact version.",
+          detail: ownsItemShares
+            ? "Review the claimed items and current digest before approving this exact version."
+            : "No unclaimed item shares remain. You can still review and approve your zero-item allocation.",
           label: "Review my split",
           href: "#live-approval-title",
         };
@@ -4134,6 +4153,7 @@ export function TapTabLivePanel({
                     <div>
                       <textarea
                         id="live-invite-address"
+                        data-testid="participant-wallets-field"
                         value={inviteAddress}
                         onChange={(event) => setInviteAddress(event.target.value)}
                         placeholder={"0x…\n0x…"}
@@ -4284,6 +4304,11 @@ export function TapTabLivePanel({
                       ? "Select shares to claim"
                       : `Claim ${selectedClaimKeys.length} ${selectedClaimKeys.length === 1 ? "share" : "shares"} together`}
                   </button>
+                  {ownsItemShares ? (
+                    <a className="quiet-button" href="#live-approval-title">
+                      Review and approve my updated split
+                    </a>
+                  ) : null}
                 </div>
               ) : null}
             </section>
@@ -4556,7 +4581,10 @@ export function TapTabLivePanel({
             </div>
           </details>
 
-          <details className="tool-disclosure live-activity-details">
+          <details
+            className="tool-disclosure live-activity-details"
+            data-testid="confirmed-testnet-activity"
+          >
             <summary>
               <span>
                 <strong>Confirmed Monad activity</strong>

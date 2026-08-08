@@ -127,7 +127,7 @@ export function TapTabSettlementReceipt({
       context.lineWidth = 2;
       context.stroke();
 
-      context.fillStyle = "#5f4cf6";
+      context.fillStyle = "#0e6574";
       context.beginPath();
       context.roundRect(104, 92, 64, 64, 18);
       context.fill();

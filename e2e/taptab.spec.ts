@@ -82,6 +82,21 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
+test("shows the linked Testnet runbook and editable live bill fields", async ({ page }) => {
+  await installMockMonadRpc(page);
+  await page.goto(`/?workspace=live&contract=${LIVE_CONTRACT}&bill=2#bill`);
+  await waitForHydration(page);
+
+  const guide = page.getByTestId("testnet-demo-guide");
+  await expect(guide).toBeVisible();
+  await expect(guide.getByRole("heading", { name: "From sign-in to explorer proof" })).toBeVisible();
+  await expect(guide.locator('[data-testid^="testnet-demo-step-"]')).toHaveCount(8);
+
+  await page.getByTestId("testnet-demo-step-receipt").click();
+  await expect(page.getByTestId("live-bill-fields")).toHaveAttribute("open", "");
+  await expect(page.getByRole("textbox", { name: "Merchant" }).last()).toBeEditable();
+});
+
 test("discovers an announced browser wallet through the production Reown adapter", async ({
   page,
 }, testInfo) => {
@@ -360,7 +375,7 @@ test("supports visible keyboard focus and keyboard activation of the primary jou
   await page.goto("/");
   await waitForHydration(page);
 
-  const primaryJourney = page.getByRole("button", { name: /Try TapTab/ });
+  const primaryJourney = page.getByRole("button", { name: /Try sample bill/ });
   await tabUntilFocused(page, primaryJourney);
   await expect(primaryJourney).toBeFocused();
   const focusStyle = await primaryJourney.evaluate((element) => {
@@ -535,7 +550,7 @@ test("keeps workspace links canonical and isolates the personal payment route", 
     `/?workspace=live&contract=${CONTRACT}&bill=7#bill`,
   );
   await expect(page.locator(".payment-route-wallet")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: /Guided demo/ })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Open Stage mode/ })).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Share bill" })).toHaveCount(0);
 });
 
@@ -566,9 +581,9 @@ test("keeps the sample journey clear and free of page-level overflow", async ({ 
   await waitForHydration(page);
 
   await expect(
-    page.getByRole("heading", { name: "Claim what you had. Pay only your part." }),
+    page.getByRole("heading", { name: "Nobody fronts the bill." }),
   ).toBeVisible();
-  await page.getByRole("button", { name: /Try TapTab/ }).click();
+  await page.getByRole("button", { name: /Try sample bill/ }).click();
   await expect(page.locator("#bill")).toBeInViewport();
   await expect(page.getByText("Sample bill · local only")).toBeVisible();
   await expect(page.locator(".price-live")).toHaveText("Live");
@@ -595,7 +610,7 @@ test("runs and resets the complete Try TapTab sample with a privacy-safe receipt
   await page.goto("/");
   await waitForHydration(page);
 
-  await page.getByRole("button", { name: /Try TapTab/ }).click();
+  await page.getByRole("button", { name: /Try sample bill/ }).click();
   const guide = page.locator(".try-taptab-guide");
   await expect(guide).toBeVisible();
   await expect(guide.getByRole("heading", { name: "Claim a shared item" })).toBeVisible();
@@ -646,7 +661,7 @@ test("runs and resets the complete Try TapTab sample with a privacy-safe receipt
 test("stage mode traps focus, closes with Escape and restores the trigger", async ({ page }) => {
   await page.goto("/");
   await waitForHydration(page);
-  const trigger = page.getByRole("button", { name: /Guided demo/ }).first();
+  const trigger = page.getByRole("button", { name: /Open Stage mode/ }).first();
   await trigger.focus();
   await trigger.click();
 

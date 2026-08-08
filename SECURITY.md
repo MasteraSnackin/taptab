@@ -1,6 +1,6 @@
 # Web dependency security boundary
 
-**Reviewed:** 7 August 2026
+**Reviewed:** 8 August 2026
 
 TapTab is unaudited hackathon software for Monad Testnet. Dependency reports,
 tests and source matching are useful assurance evidence, but none is an

@@ -71,7 +71,7 @@ test("serves a standalone GBP-first TapTab manifest with a safe scope", async ()
   assert.equal(manifest.start_url, "/");
   assert.equal(manifest.scope, "/");
   assert.equal(manifest.display, "standalone");
-  assert.equal(manifest.theme_color, "#5f4cf6");
+  assert.equal(manifest.theme_color, "#0e6574");
   assert.equal(manifest.background_color, "#fffdf9");
   assert.ok(
     manifest.icons.some(

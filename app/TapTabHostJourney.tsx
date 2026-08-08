@@ -14,11 +14,14 @@ export type TapTabHostJourneyAction = Readonly<{
 }>;
 
 export type TapTabHostJourneyProps = Readonly<{
+  wallet: TapTabHostJourneyAction;
   receipt: TapTabHostJourneyAction;
   quote: TapTabHostJourneyAction;
   createBill: TapTabHostJourneyAction;
   invitations: TapTabHostJourneyAction;
-  audience: TapTabHostJourneyAction;
+  participation: TapTabHostJourneyAction;
+  payment: TapTabHostJourneyAction;
+  proof: TapTabHostJourneyAction;
 }>;
 
 const STATUS_LABELS: Readonly<Record<TapTabHostJourneyStatus, string>> = {
@@ -28,17 +31,26 @@ const STATUS_LABELS: Readonly<Record<TapTabHostJourneyStatus, string>> = {
 };
 
 export function TapTabHostJourney({
+  wallet,
   receipt,
   quote,
   createBill,
   invitations,
-  audience,
+  participation,
+  payment,
+  proof,
 }: TapTabHostJourneyProps) {
   const steps = [
     {
+      id: "wallet",
+      label: "Sign in and switch network",
+      actionLabel: "Open wallet sign-in",
+      ...wallet,
+    },
+    {
       id: "receipt",
-      label: "Verify receipt",
-      actionLabel: "Open receipt",
+      label: "Fill bill details",
+      actionLabel: "Edit receipt fields",
       ...receipt,
     },
     {
@@ -55,36 +67,54 @@ export function TapTabHostJourney({
     },
     {
       id: "invite",
-      label: "Invite wallets",
-      actionLabel: "Open invitations",
+      label: "Fill participant wallets",
+      actionLabel: "Open wallet fields",
       ...invitations,
     },
     {
-      id: "audience",
-      label: "Open trusted audience view",
-      actionLabel: "Open audience view",
-      ...audience,
+      id: "participation",
+      label: "Join, claim and approve",
+      actionLabel: "Open participant actions",
+      ...participation,
+    },
+    {
+      id: "payment",
+      label: "Pay and settle",
+      actionLabel: "Open protected payment",
+      ...payment,
+    },
+    {
+      id: "proof",
+      label: "Show Testnet proof",
+      actionLabel: "Open transaction",
+      ...proof,
     },
   ] as const;
 
   return (
-    <section className="host-journey" aria-labelledby="host-journey-title">
+    <section
+      className="host-journey"
+      aria-labelledby="host-journey-title"
+      data-testid="testnet-demo-guide"
+    >
       <header className="host-journey-header">
         <div>
-          <span className="section-kicker">Host checklist</span>
-          <h3 id="host-journey-title">Take the verified receipt live</h3>
+          <span className="section-kicker">Live Testnet demo</span>
+          <h3 id="host-journey-title">From sign-in to explorer proof</h3>
           <p>
-            Follow each linked check before sharing the contract-backed bill with the table.
+            Fill the linked fields, approve each wallet request and finish on a confirmed Monad
+            transaction that judges can inspect independently.
           </p>
         </div>
-        <span className="host-journey-count">Five linked checks</span>
+        <span className="host-journey-count">Eight linked checks</span>
       </header>
 
-      <ol aria-label="Five-step host checklist">
+      <ol aria-label="Eight-step live Testnet checklist">
         {steps.map((step, index) => (
           <li key={step.id} data-status={step.status}>
             <a
               href={step.href}
+              data-testid={`testnet-demo-step-${step.id}`}
               aria-disabled={step.disabled || undefined}
               tabIndex={step.disabled ? -1 : undefined}
               onClick={(event) => {
