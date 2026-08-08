@@ -146,9 +146,9 @@ and checks selected maximum-shape gas regression ceilings.
 The current production application is Vercel deployment
 `dpl_oPsQP2xuZNZnYPoYVpZ59JCttate`. Its root route, public readiness endpoint
 and canonical Bill `2` read are recorded in
-[VERCEL_DEPLOYMENT_EVIDENCE.md](VERCEL_DEPLOYMENT_EVIDENCE.md). This release was
-built from the local working tree and does not yet have an immutable Git commit
-identifier. The older Worker version
+[VERCEL_DEPLOYMENT_EVIDENCE.md](VERCEL_DEPLOYMENT_EVIDENCE.md). Its application
+source, Vercel configuration and video release are preserved in public commit
+`bcac3ecb2250112c0f20b9b8925d34120987269e`. The older Worker version
 `28fa6666-c9cc-4734-b465-1587f82d4946` remains historical evidence for source
 checkpoint `27ecdb48ed9fbdd1fa50a8661aa39c1d7379cd4d`; its original checks remain
 in [public-preview-evidence.json](public-preview-evidence.json).

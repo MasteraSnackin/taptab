@@ -10,9 +10,10 @@
 - Vercel status at inspection: `Ready`
 - Deployment created: 8 August 2026 at 14:15:47 BST
 
-The Vercel deployment is a build from the local working tree. It is not yet
-identified by an immutable Git commit, so the deployment ID above is the exact
-release identifier.
+The Vercel deployment was built from the local working tree and the application
+source, Vercel configuration and video release were subsequently preserved in
+public Git commit `bcac3ecb2250112c0f20b9b8925d34120987269e`. The Vercel
+deployment ID above remains the exact hosting-release identifier.
 
 ## Public readiness result
 
