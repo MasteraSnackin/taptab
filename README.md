@@ -18,19 +18,19 @@ workspace when a trusted TapTab deployment and wallet provider are configured.
 The repository retains some legacy CrowdCart files; TapTab is the active product.
 
 **Public Monad Testnet application:**
-[open canonical live bill 2](https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
+[open canonical live bill 2](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
 The configured deployment is contract
 [`0xa2fb…A198`](https://testnet.monadscan.com/address/0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198)
 on chain `10143`; the public
-[readiness check](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+[readiness check](https://taptab-eosin.vercel.app/api/health/ready)
 validates its bytecode and canonical bill `2`.
 
-The public Worker is evidence for source checkpoint `27ecdb4`. The task-first
-live layout, five-step host checklist, corrected Reown Ethers adapter and connector
-UI, five-profile browser coverage and optional RPC fallbacks documented below
-are verified in the current local working tree but have not yet been
-redeployed. Do not use the public URL as evidence for those later interface,
-wallet and resilience changes.
+The current Vercel production deployment is `dpl_oPsQP2xuZNZnYPoYVpZ59JCttate`.
+Its root route, readiness route and canonical bill were rechecked on 8 August
+2026; the retained result is in
+[the Vercel deployment evidence](docs/submission/VERCEL_DEPLOYMENT_EVIDENCE.md).
+The older Cloudflare Worker remains historical evidence for source checkpoint
+`27ecdb4`; it is no longer the canonical judge URL.
 
 > [!WARNING]
 > TapTab is unaudited hackathon software. Use it only with Testnet funds. The
@@ -54,7 +54,7 @@ wallet and resilience changes.
 
 The concise judging bundle is in
 [docs/submission/README.md](docs/submission/README.md). It includes the pitch,
-architecture diagram, maintained captures, narrated two-minute demo, short
+architecture diagram, maintained captures, narrated 2 minute 30 second demo, short
 captioned cut and local evidence manifest.
 
 ## Table of Contents
@@ -84,25 +84,31 @@ evidence, and the remaining submission gaps separate.
 
 ## Demonstration production record
 
-[![TapTab — Nobody fronts the bill](public/og.png)](https://taptab.mythicmindlabs.workers.dev/)
+[![Watch the TapTab 2 minute 30 second demo](docs/submission/video/2min30/taptab-demo-2min30-poster.png)](docs/submission/video/2min30/taptab-demo-2min30.mp4)
 
-The retained V5 record describes a verified `119.000`-second, 1920 × 1080
-demonstration with ElevenLabs' synthetic **Nora — Blackpool Product Guide**
-narration, 31 matching caption cues and a speech-free QR hold. Large delivery
-binaries are not included in this source-only repository, so the README does
-not expose download links that would fail in a clean clone. Use the public app
-and the maintained desktop, mobile and Stage Mode captures below for the
-immediately available product demonstration.
+The current fallback demonstration is exactly `150.000` seconds at 1920 × 1080
+and 30 fps. It uses ElevenLabs' synthetic **Nora — Blackpool Product Guide**
+voice at natural speed, burnt-in captions, an original music bed and a
+speech-free evidence hold. The complete application views remain visible
+without magnified crops. Purple identifies the deterministic local sample;
+green identifies verified public Monad Testnet reads; amber identifies the
+protected cancellation/refund branch.
 
-The production record keeps its evidence boundaries explicit: Bill `3` is the
-settled three-wallet outcome, Bill `4` is the cancelled and refunded outcome,
-and the QR opens the separate live Bill `2`, which is created and publicly
-readable but is not presented as settled.
+The film proves the Vercel deployment can read chain `10143`, the trusted
+contract and canonical Bill `2`. It then displays the genuine historical Bill
+`3` settlement receipt with `Success`, explicitly labelled as a replay with no
+new wallet write. The final QR opens live Bill `2`, which is publicly readable
+and remains `Draft`; Testnet MON is disclosed as having no cash value.
 
 ### Retained video sources and records
 
 | File | Purpose |
 | --- | --- |
+| [Current 2:30 MP4](docs/submission/video/2min30/taptab-demo-2min30.mp4) | Playable Vercel and Monad Testnet fallback demonstration |
+| [Current poster and QR](docs/submission/video/2min30/taptab-demo-2min30-poster.png) | Final Bill 2 call-to-action frame |
+| [Current captions](docs/submission/video/2min30/taptab-demo-2min30.srt) | Exact delivered subtitle sidecar |
+| [Current narration record](docs/submission/video/2min30/FINAL_NARRATION.md) | Delivered Nora cues and speech-free evidence hold |
+| [Current QA](docs/submission/video/2min30/QA_SUMMARY.md) | Duration, codec, audio, QR, decode and evidence checks |
 | [Upload-ready captions](docs/submission/video/2min/taptab-demo-2min.srt) | Exact 31-cue UTF-8 subtitle track |
 | [V5 production record](docs/submission/video/2min/v5/V5_PRODUCTION_PLAN.md) | Frame-aligned edit decisions and evidence boundaries |
 | [V5 build script](docs/submission/video/2min/v5/build-v5.mjs) | Master, poster, teaser, evidence-cut and QA pipeline |
@@ -111,7 +117,7 @@ readable but is not presented as settled.
 | [Final synchronisation audit](docs/submission/video/2min/v5/review/FINAL_SYNC_AUDIT.md) | Review of narration-to-screen alignment |
 | [Narration and audio provenance](docs/submission/video/2min/v3/audio/PROVENANCE.md) | Voice, music and effects sources |
 
-The build script expects archived raw audio, screen captures and explorer
+The historical V5 build script expects archived raw audio, screen captures and explorer
 evidence that are not included in this source-only clone. The historical output
 hashes and delivery checks remain documented in
 [the video production record](docs/submission/video/README.md); they are not a
@@ -164,7 +170,7 @@ claim that the corresponding binaries are downloadable from this repository.
 | Area | Technology |
 | --- | --- |
 | Web application | Next.js 16, React 19 and TypeScript 5 |
-| Build and hosting runtime | Vinext, Vite, Cloudflare Workers and Wrangler |
+| Build and hosting runtime | Next.js on Vercel; Vinext, Vite, Cloudflare Workers and Wrangler retained as an alternative target |
 | Styling | Tailwind CSS 4 plus application CSS |
 | Wallet integration | Reown AppKit with its Ethers adapter; viem for typed contract reads and writes |
 | Blockchain | Monad Testnet, chain ID 10143 |

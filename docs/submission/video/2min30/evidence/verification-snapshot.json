@@ -1,0 +1,51 @@
+{
+  "schema": "taptab-video-2min30-verification-snapshot",
+  "capturedAt": "2026-08-08T13:18:21.047Z",
+  "publicDeployment": {
+    "url": "https://taptab-eosin.vercel.app/",
+    "httpCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "responseSeconds": 0.403362
+  },
+  "readiness": {
+    "url": "https://taptab-eosin.vercel.app/api/health/ready",
+    "status": "ready",
+    "checks": {
+      "configuration": "pass",
+      "rpc": "pass",
+      "network": "pass",
+      "contract": "pass",
+      "bill": "pass"
+    },
+    "chainId": 10143,
+    "blockNumber": "51962184",
+    "checkedAt": "2026-08-08T13:18:21.047Z",
+    "requestId": "3bd52ce2-6377-4ed2-9486-eaa102e6d3de"
+  },
+  "rpc": {
+    "chainIdHex": "0x279f",
+    "chainId": 10143
+  },
+  "bill2": {
+    "canonicalUrl": "https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live",
+    "contractStateRaw": 1,
+    "contractState": "Draft",
+    "receiptGbp": "48.50",
+    "creationTransaction": "0xc089eb042dc78fb64a0ddf60ea35c5ecbe7f01ff5371b37be9a72bc872effd70"
+  },
+  "contract": {
+    "address": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "monadscanSource": "Source Code Verified · Exact Match",
+    "sourceRecord": "MonadVision reports · Sourcify full match",
+    "sourceBoundary": "Source publication/matching is not a security audit."
+  },
+  "historicalBill3Settlement": {
+    "transactionHash": "0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+    "statusHex": "0x1",
+    "status": "Success",
+    "blockNumber": 51739005,
+    "to": "0xa2fb0b3bf41b0b50687f4807e8a1ccc346faa198",
+    "noNewWriteInVideo": true
+  },
+  "disclosure": "Testnet MON has no cash value."
+}

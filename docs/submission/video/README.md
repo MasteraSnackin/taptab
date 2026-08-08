@@ -1,6 +1,37 @@
 # TapTab demo videos
 
-## Two-minute narrated walkthrough: V5 production record
+## Current 2 minute 30 second Vercel and Monad Testnet demo
+
+[![Watch the current TapTab demo](2min30/taptab-demo-2min30-poster.png)](2min30/taptab-demo-2min30.mp4)
+
+The current fallback demonstration is exactly `150.000` seconds, 1920 × 1080
+at 30 fps, with H.264 video and 48 kHz stereo AAC sound. It uses the approved
+ElevenLabs **Nora – Blackpool Product Guide** recordings at natural speed,
+burnt-in captions, original locally synthesised music and a final speech-free
+evidence hold.
+
+The first section is explicitly labelled as a deterministic local sample with
+no wallet write. The public-evidence section then shows the live Vercel URL,
+canonical Bill `2`, a genuine HTTP `200` readiness result with every check
+passing on chain `10143`, the full deployed contract address, source-publication
+records and Bill `3`'s genuine historical `Success` settlement receipt. It does
+not claim a fresh transaction. The final disclosure states that Testnet MON has
+no cash value.
+
+The master is `9,001,355` bytes with SHA-256
+`3e695982f21396e8a2ac6f4235d54f8f8828e96e84848e0a53aeb7091acd3591`.
+
+Release files:
+
+- [MP4 master](2min30/taptab-demo-2min30.mp4)
+- [poster and canonical Bill 2 QR](2min30/taptab-demo-2min30-poster.png)
+- [delivered narration and picture map](2min30/FINAL_NARRATION.md)
+- [subtitle sidecar](2min30/taptab-demo-2min30.srt)
+- [verification snapshot](2min30/evidence/verification-snapshot.json)
+- [QA summary](2min30/QA_SUMMARY.md)
+- [build and provenance record](2min30/build-video.mjs)
+
+## Historical two-minute narrated walkthrough: V5 production record
 
 The retained record describes the definitive V5 product walkthrough. V5 is
 exactly `119.000` seconds, leaving a one-second submission-platform safety

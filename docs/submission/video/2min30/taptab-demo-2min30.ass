@@ -1,0 +1,42 @@
+[Script Info]
+Title: TapTab 2:30 fallback demo
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,38,&H00FFFFFF,&H00FFFFFF,&H00101016,&H9C101016,-1,0,0,0,100,100,0,0,3,2,0,2,130,130,104,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.52,0:00:03.73,Default,,0,0,0,,TapTab on Monad splits restaurant bills, so nobody fronts the money.
+Dialogue: 0,0:00:07.52,0:00:11.57,Default,,0,0,0,,This £53.95 table is a clearly labelled local sample.
+Dialogue: 0,0:00:11.82,0:00:15.85,Default,,0,0,0,,Diners claim whole items or selected shares of wine and starters.
+Dialogue: 0,0:00:15.85,0:00:17.69,Default,,0,0,0,,Each pound total updates instantly.
+Dialogue: 0,0:00:31.54,0:00:33.65,Default,,0,0,0,,Only volunteers share the fair remainder.
+Dialogue: 0,0:00:33.91,0:00:37.82,Default,,0,0,0,,The table votes on the tip, then every diner approves the same split.
+Dialogue: 0,0:00:38.28,0:00:39.71,Default,,0,0,0,,Any change clears consent.
+Dialogue: 0,0:00:45.53,0:00:47.72,Default,,0,0,0,,Payment opens only after approval.
+Dialogue: 0,0:00:48.14,0:00:50.80,Default,,0,0,0,,Each diner funds exactly what they owe,
+Dialogue: 0,0:00:50.80,0:00:54.22,Default,,0,0,0,,or sponsors somebody else without changing the underlying obligation.
+Dialogue: 0,0:00:54.66,0:00:56.85,Default,,0,0,0,,If £18.91 is still missing,
+Dialogue: 0,0:00:56.85,0:00:58.73,Default,,0,0,0,,settlement stays locked.
+Dialogue: 0,0:00:59.07,0:01:01.48,Default,,0,0,0,,Once the full £53.95 arrives,
+Dialogue: 0,0:01:01.48,0:01:02.99,Default,,0,0,0,,the venue can be paid.
+Dialogue: 0,0:01:13.53,0:01:15.70,Default,,0,0,0,,Stage Mode turns the same live table state
+Dialogue: 0,0:01:15.70,0:01:17.83,Default,,0,0,0,,into a room-readable progress board.
+Dialogue: 0,0:01:23.12,0:01:25.25,Default,,0,0,0,,The contract protects both outcomes.
+Dialogue: 0,0:01:25.25,0:01:27.85,Default,,0,0,0,,Exact funding unlocks settlement.
+Dialogue: 0,0:01:28.22,0:01:30.85,Default,,0,0,0,,Cancellation or expiry pays the venue nothing,
+Dialogue: 0,0:01:30.85,0:01:33.50,Default,,0,0,0,,and opens refunds to each original contributor,
+Dialogue: 0,0:01:33.50,0:01:35.59,Default,,0,0,0,,including a sponsor.
+Dialogue: 0,0:01:36.54,0:01:40.00,Default,,0,0,0,,Now switch from the £53.95 local sample
+Dialogue: 0,0:01:40.00,0:01:41.46,Default,,0,0,0,,to live evidence.
+Dialogue: 0,0:01:41.97,0:01:45.80,Default,,0,0,0,,Bill 2 represents £48.50 on Monad Testnet,
+Dialogue: 0,0:01:45.80,0:01:47.95,Default,,0,0,0,,with a confirmed creation transaction.
+Dialogue: 0,0:01:48.44,0:01:52.51,Default,,0,0,0,,Monad turns claims, approvals, sponsored payments and refunds
+Dialogue: 0,0:01:52.51,0:01:55.05,Default,,0,0,0,,into shared state for the whole table,
+Dialogue: 0,0:01:55.05,0:01:56.21,Default,,0,0,0,,without a central bill keeper.

@@ -1,0 +1,70 @@
+{
+  "schema": "taptab-video-2min30-provenance",
+  "programmeSeconds": 150,
+  "voice": {
+    "provider": "ElevenLabs",
+    "voice": "Nora - Blackpool Product Guide",
+    "model": "Eleven Multilingual v2",
+    "sourceFiles": {
+      "scene-01.mp3": "91834c0f6e07754c723d30922d62a19327de226af3ce4d249113fe67e2da7662",
+      "scene-02.mp3": "5e118f8c42cfc39f7bc00509ce94a5a96ad61b801c4d084a724bd91df806ba47",
+      "scene-03.mp3": "71c494dd51a59170351cb88a5871091dc61b6c2ee513543e77b4b3d3bbe5337c",
+      "scene-04.mp3": "50bdc386e7200ecf179d4f52ee60ecb23186ce65b0e96e3986b4216c0f94e06b",
+      "scene-05.mp3": "8155859754fb888edaffd0c7c0c9e399cf6a5a07f1ac2908ff378697ef253d40",
+      "scene-06.mp3": "044319233c37b93b4339b18f63b997a1b60ddfcecc1751972a57f65b4fd80a78",
+      "scene-07.mp3": "110e5e48f163647944e688a9625331cd947e7b14b9be81533e6516885a34d3ce"
+    },
+    "boundary": "Existing approved Nora clips are reused. The final public-evidence hold is intentionally speech-free rather than substituting another voice."
+  },
+  "music": {
+    "original": true,
+    "generatedSources": [
+      "73.42 Hz sine",
+      "110 Hz sine",
+      "146.83 Hz sine",
+      "seeded filtered pink noise"
+    ]
+  },
+  "publicEvidence": {
+    "snapshot": "evidence/verification-snapshot.json",
+    "checkedAt": "2026-08-08T13:18:21.047Z",
+    "noFreshTransactionBroadcast": true
+  },
+  "rebuildableIntermediates": {
+    "narration": {
+      "path": "audio/narration-master.wav",
+      "sha256": "514145690a0556043ee98159ae175067fc4f7ebfcfbfcecc772ddbb31ad72106"
+    },
+    "music": {
+      "path": "audio/music-bed.wav",
+      "sha256": "ffd9210d8e45853d0aa46fafd8681effd9b368c7ee60b8525492b1d739d139b4"
+    },
+    "sfx": {
+      "path": "audio/ui-sfx.wav",
+      "sha256": "dd6b734ef91aa62365eb97a2804410a5231e7e577643ebbee90c5be8fd320936"
+    },
+    "master": {
+      "path": "audio/master-150s.wav",
+      "sha256": "090f06b2d625bff7fbc6511a1df54e86b679b1f12ab462170e45e323d4d27a3b"
+    },
+    "retention": "Removed after QA; these PCM files are recreated by build-video.mjs."
+  },
+  "retainedFiles": {
+    "masterVideo": {
+      "path": "taptab-demo-2min30.mp4",
+      "sha256": "3e695982f21396e8a2ac6f4235d54f8f8828e96e84848e0a53aeb7091acd3591"
+    },
+    "poster": {
+      "path": "taptab-demo-2min30-poster.png",
+      "sha256": "1accc28aa2418acd7bfbefc02d4493fc5097fdb0f28fc8f519bcbbccfcd55db5"
+    },
+    "captionsAss": {
+      "path": "taptab-demo-2min30.ass",
+      "sha256": "16668a167af31609ea935f4fc7f4e9fa5fcf8f8fd12ca57d7b3299ea70bb4ba6"
+    },
+    "captionsSrt": {
+      "path": "taptab-demo-2min30.srt",
+      "sha256": "a99666a448adcf443bd189d1d0a702b6407b168a53de84c323e43e243d597418"
+    }
+  }
+}

@@ -101,8 +101,8 @@ Open <http://localhost:3000>. The shipped sample requires no wallet or
 environment variables.
 
 The configured application and canonical bill are publicly available through
-the [live bill `2` link](https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
-Its [readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+the [live bill `2` link](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
+Its [readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
 passes against the configured Testnet chain, deployed bytecode and bill.
 
 For the complete deterministic local gate:
@@ -122,17 +122,20 @@ and checks selected maximum-shape gas regression ceilings.
 | --- | --- |
 | Local demo | <http://localhost:3000> |
 | Repository URL | [github.com/MasteraSnackin/taptab](https://github.com/MasteraSnackin/taptab) |
-| Public Monad Testnet application | [Open canonical bill `2`](https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live) |
+| Public Monad Testnet application | [Open canonical bill `2`](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live) |
 | TapTab contract | [`0xa2fb…A198` on Monadscan](https://testnet.monadscan.com/address/0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198) |
 | Deployment transaction | [`0xc48a…a488`, block `51718885`](https://testnet.monadscan.com/tx/0xc48ab94b9e503d09f52e32dd8b2f97adb9b0ca80ab83a6a544dc72fa338ba488) |
 | Initial bill `1` creation | [`0xf9de…ee41`, block `51718888`](https://testnet.monadscan.com/tx/0xf9de7427fd11bdee1d0785c965b7258144f9106ece70d9dfac3b0dcdc943ee41) |
 | Canonical bill `2` creation | [`0xc089…fd70`, block `51722744`, status `1`, gas `1,612,923`](https://testnet.monadscan.com/tx/0xc089eb042dc78fb64a0ddf60ea35c5ecbe7f01ff5371b37be9a72bc872effd70) |
 | Canonical bill `2` deadline | `2026-08-14T17:01:55Z` |
 | Source verification | [Monadscan source published; Sourcify full match complete](SOURCE_VERIFICATION_STATUS.md) |
-| Runtime readiness | [All configured checks pass for bill `2`](https://taptab.mythicmindlabs.workers.dev/api/health/ready) |
+| Runtime readiness | [All configured checks pass for bill `2`](https://taptab-eosin.vercel.app/api/health/ready) |
+| Vercel deployment evidence | [Production ID, readiness result and independent contract read](VERCEL_DEPLOYMENT_EVIDENCE.md) |
 | Multi-wallet Testnet rehearsal | [Bills `3` and `4`, 31 successful contract transactions](monad-testnet-multiwallet-evidence.json) |
-| Upload-ready subtitle track | [video/2min/taptab-demo-2min.srt](video/2min/taptab-demo-2min.srt) |
-| Video production record | [V5 plan, source scripts, captions and retained QA](video/README.md) |
+| Current 2:30 fallback video | [Watch or download the MP4](video/2min30/taptab-demo-2min30.mp4) |
+| Current video QA | [Duration, codec, sound, QR and evidence checks](video/2min30/QA_SUMMARY.md) |
+| Historical two-minute subtitle track | [video/2min/taptab-demo-2min.srt](video/2min/taptab-demo-2min.srt) |
+| Video production record | [Current release plus retained V5 history](video/README.md) |
 | Desktop, mobile and Stage Mode captures | [screenshots](screenshots) |
 | Three-minute script | [PITCH.md](PITCH.md) |
 | Architecture diagram | [ARCHITECTURE.md](ARCHITECTURE.md) |
@@ -140,16 +143,15 @@ and checks selected maximum-shape gas regression ceilings.
 | Public-preview check | [public-preview-evidence.json](public-preview-evidence.json) |
 | Full local judging runbook | [../judging/LOCAL_RUNBOOK.md](../judging/LOCAL_RUNBOOK.md) |
 
-The current public application is Worker version
-`28fa6666-c9cc-4734-b465-1587f82d4946`, fully rolled out from source checkpoint
-`27ecdb48ed9fbdd1fa50a8661aa39c1d7379cd4d`. The post-deployment page,
-readiness, price, personal-payment, manifest, Open Graph and browser checks are
-recorded in [public-preview-evidence.json](public-preview-evidence.json).
-The current local task-first live card, five-step host checklist, corrected
-Reown Ethers adapter and connector UI, optional RPC fallbacks and expanded browser
-suite were added after that checkpoint and have not been redeployed. The public
-link must not be cited as evidence for those later changes until the exact
-current revision is deployed and re-probed.
+The current production application is Vercel deployment
+`dpl_oPsQP2xuZNZnYPoYVpZ59JCttate`. Its root route, public readiness endpoint
+and canonical Bill `2` read are recorded in
+[VERCEL_DEPLOYMENT_EVIDENCE.md](VERCEL_DEPLOYMENT_EVIDENCE.md). This release was
+built from the local working tree and does not yet have an immutable Git commit
+identifier. The older Worker version
+`28fa6666-c9cc-4734-b465-1587f82d4946` remains historical evidence for source
+checkpoint `27ecdb48ed9fbdd1fa50a8661aa39c1d7379cd4d`; its original checks remain
+in [public-preview-evidence.json](public-preview-evidence.json).
 
 The retained V5 production record states that the recording keeps the complete application viewport visible for
 `76.0` seconds. It includes a genuinely continuous `15.000`-second, 450-frame

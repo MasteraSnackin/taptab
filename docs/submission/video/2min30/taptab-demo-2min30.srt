@@ -1,0 +1,111 @@
+1
+00:00:00,520 --> 00:00:03,730
+TapTab on Monad splits restaurant bills, so nobody fronts the money.
+
+2
+00:00:07,520 --> 00:00:11,570
+This £53.95 table is a clearly labelled local sample.
+
+3
+00:00:11,820 --> 00:00:15,850
+Diners claim whole items or selected shares of wine and starters.
+
+4
+00:00:15,850 --> 00:00:17,690
+Each pound total updates instantly.
+
+5
+00:00:31,540 --> 00:00:33,650
+Only volunteers share the fair remainder.
+
+6
+00:00:33,910 --> 00:00:37,820
+The table votes on the tip, then every diner approves the same split.
+
+7
+00:00:38,280 --> 00:00:39,710
+Any change clears consent.
+
+8
+00:00:45,530 --> 00:00:47,720
+Payment opens only after approval.
+
+9
+00:00:48,140 --> 00:00:50,800
+Each diner funds exactly what they owe,
+
+10
+00:00:50,800 --> 00:00:54,220
+or sponsors somebody else without changing the underlying obligation.
+
+11
+00:00:54,660 --> 00:00:56,850
+If £18.91 is still missing,
+
+12
+00:00:56,850 --> 00:00:58,730
+settlement stays locked.
+
+13
+00:00:59,070 --> 00:01:01,480
+Once the full £53.95 arrives,
+
+14
+00:01:01,480 --> 00:01:02,990
+the venue can be paid.
+
+15
+00:01:13,530 --> 00:01:15,700
+Stage Mode turns the same live table state
+
+16
+00:01:15,700 --> 00:01:17,830
+into a room-readable progress board.
+
+17
+00:01:23,120 --> 00:01:25,250
+The contract protects both outcomes.
+
+18
+00:01:25,250 --> 00:01:27,850
+Exact funding unlocks settlement.
+
+19
+00:01:28,220 --> 00:01:30,850
+Cancellation or expiry pays the venue nothing,
+
+20
+00:01:30,850 --> 00:01:33,500
+and opens refunds to each original contributor,
+
+21
+00:01:33,500 --> 00:01:35,590
+including a sponsor.
+
+22
+00:01:36,540 --> 00:01:40,000
+Now switch from the £53.95 local sample
+
+23
+00:01:40,000 --> 00:01:41,460
+to live evidence.
+
+24
+00:01:41,970 --> 00:01:45,800
+Bill 2 represents £48.50 on Monad Testnet,
+
+25
+00:01:45,800 --> 00:01:47,950
+with a confirmed creation transaction.
+
+26
+00:01:48,440 --> 00:01:52,510
+Monad turns claims, approvals, sponsored payments and refunds
+
+27
+00:01:52,510 --> 00:01:55,050
+into shared state for the whole table,
+
+28
+00:01:55,050 --> 00:01:56,210
+without a central bill keeper.
