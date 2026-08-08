@@ -548,7 +548,7 @@ cd contracts
 npm test
 ~~~
 
-In the current uncommitted working tree, a complete 7 August 2026 gate run
+In the current uncommitted working tree, a complete 8 August 2026 gate run
 reported 223 passing application tests, 63 passing five-profile Playwright
 tests with 27
 intentional profile skips, and 89 passing contract tests: 375
