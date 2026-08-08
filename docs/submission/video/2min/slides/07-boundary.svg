@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#10131c"/>
+      <stop offset="1" stop-color="#241a4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect x="744" y="172" width="116" height="116" rx="30" fill="#6d45ff"/>
+  <text x="802" y="250" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="58" font-weight="700">T</text>
+  <text x="902" y="252" fill="#ffffff" font-family="Arial, sans-serif" font-size="66" font-weight="700">TapTab</text>
+  <text x="960" y="405" text-anchor="middle" fill="#a8ffac" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="3">LIVE MONAD TESTNET EVIDENCE</text>
+  <text x="960" y="505" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="48" font-weight="700">Chain 10143 · 0xa2fb0B3b…46FAA198</text>
+  <text x="960" y="580" text-anchor="middle" fill="#a8ffac" font-family="Arial, sans-serif" font-size="46" font-weight="700">Sourcify perfect match</text>
+  <text x="960" y="655" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="700">Public readiness · 200 OK</text>
+  <rect x="482" y="748" width="956" height="2" fill="#4b4f5d"/>
+  <text x="960" y="808" text-anchor="middle" fill="#ffc887" font-family="Arial, sans-serif" font-size="24" font-weight="700">REMAINING BOUNDARY</text>
+  <text x="960" y="852" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="27">Real multi-wallet writes, settlement and refund rehearsal remain.</text>
+</svg>

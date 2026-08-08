@@ -1,0 +1,217 @@
+{
+  "schema": "taptab-monad-testnet-deployment-evidence",
+  "version": 3,
+  "capturedAt": "2026-08-07T17:58:21.533Z",
+  "deploymentFirstCapturedAt": "2026-08-07T16:48:24.961Z",
+  "network": {
+    "name": "Monad Testnet",
+    "chainId": 10143,
+    "currency": "MON",
+    "rpc": "https://testnet-rpc.monad.xyz",
+    "explorer": "https://testnet.monadscan.com"
+  },
+  "contract": {
+    "name": "TapTab",
+    "address": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "explorerUrl": "https://testnet.monadscan.com/address/0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "runtimeBytecodeBytes": 18761,
+    "runtimeBytecodeHash": "0x2723aebab713f68d6e03bc66864c102e9a9f58f5399e9468cf8cdff94ab4d47b",
+    "sourceVerification": {
+      "reportingExplorer": "MonadVision",
+      "reportedProvider": "Sourcify",
+      "reportedStatus": "perfect",
+      "boundary": "This records the status displayed by MonadVision; it is not a fresh independent Sourcify API verification."
+    }
+  },
+  "transactions": [
+    {
+      "purpose": "deploy-contract",
+      "hash": "0xc48ab94b9e503d09f52e32dd8b2f97adb9b0ca80ab83a6a544dc72fa338ba488",
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xc48ab94b9e503d09f52e32dd8b2f97adb9b0ca80ab83a6a544dc72fa338ba488",
+      "blockNumber": 51718885,
+      "status": 1,
+      "gasUsed": "4165141"
+    },
+    {
+      "purpose": "create-bill-1",
+      "hash": "0xf9de7427fd11bdee1d0785c965b7258144f9106ece70d9dfac3b0dcdc943ee41",
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xf9de7427fd11bdee1d0785c965b7258144f9106ece70d9dfac3b0dcdc943ee41",
+      "blockNumber": 51718888,
+      "status": 1,
+      "gasUsed": "1425682"
+    },
+    {
+      "purpose": "create-canonical-live-demo-bill-2",
+      "hash": "0xc089eb042dc78fb64a0ddf60ea35c5ecbe7f01ff5371b37be9a72bc872effd70",
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xc089eb042dc78fb64a0ddf60ea35c5ecbe7f01ff5371b37be9a72bc872effd70",
+      "blockNumber": 51722744,
+      "blockTime": "2026-08-07T17:01:56Z",
+      "status": 1,
+      "gasUsed": "1612923"
+    }
+  ],
+  "initialDeploymentBill": {
+    "id": "1",
+    "state": "Draft",
+    "subtotal": {
+      "gbp": "48.50",
+      "gbpMinorUnits": 4850,
+      "mon": "3157.31569576496551365",
+      "wei": "3157315695764965513650"
+    },
+    "lockedQuote": {
+      "gbpPerMon": "0.01536115",
+      "observedAt": "2026-08-07T16:40:40Z"
+    },
+    "deadline": "2026-08-14T16:41:59Z"
+  },
+  "canonicalLiveDemoBill": {
+    "id": "2",
+    "state": "Draft",
+    "creator": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+    "payee": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+    "createdAt": "2026-08-07T17:01:56Z",
+    "deadline": "2026-08-14T17:01:55Z",
+    "receipt": {
+      "schema": "taptab-gbp-receipt",
+      "version": 2,
+      "subtotalGbp": "48.50",
+      "subtotalGbpMinorUnits": 4850
+    },
+    "lockedQuote": {
+      "gbpPerMon": "0.01536012",
+      "source": "CoinGecko",
+      "basis": "mainnet MON",
+      "observedAt": "2026-08-07T17:00:10Z",
+      "lockedAt": "2026-08-07T17:01:55Z",
+      "referenceSubtotalWei": "3157527415150402470814",
+      "referenceSubtotalMon": "3157.527415150402470814"
+    },
+    "testnetSettlement": {
+      "mode": "scaled-testnet-demo",
+      "divisor": 1000,
+      "allocation": "largest-remainder-half-up",
+      "subtotalWei": "3157527415150402471",
+      "subtotalMon": "3.157527415150402471",
+      "disclosure": "The Monad Testnet settlement amount is the market-reference MON amount divided by 1,000 to conserve faucet tokens. The GBP interface continues to show the £48.50 receipt value; this scaling is Testnet-only and is not a market-price claim."
+    },
+    "deployerBalanceAfterCreation": {
+      "address": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "blockNumber": 51722744,
+      "wei": "4236251630939735548",
+      "mon": "4.236251630939735548"
+    }
+  },
+  "publicReadiness": {
+    "captureStatus": "historical deployment-time probe",
+    "currentPublicPreviewEvidence": "docs/submission/public-preview-evidence.json",
+    "origin": "https://taptab.mythicmindlabs.workers.dev",
+    "workerVersionId": "65d2c3f1-1ca0-40a4-b6e7-c4e477a90f0b",
+    "workerTrafficPercent": 100,
+    "status": 200,
+    "probedAt": "2026-08-07T17:58:20.937Z",
+    "checkedAt": "2026-08-07T17:58:21.265Z",
+    "durationMs": 206,
+    "responseBytes": 293,
+    "responseSha256": "205ae0eae737cf769bf380cd2ccbd7327b6935ee4983da0dc0981be809bcc22d",
+    "blockNumber": 51733815,
+    "checks": {
+      "configuration": "pass",
+      "rpc": "pass",
+      "network": "pass",
+      "contract": "pass",
+      "bill": "pass"
+    },
+    "canonicalUrl": "https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live",
+    "canonicalPage": {
+      "status": 200,
+      "bytes": 82728,
+      "sha256": "c11f687c83c45abc36cfafb0e96be2e41bf407e97484551b4946766c0e45a402",
+      "probedAt": "2026-08-07T17:58:20.632Z"
+    }
+  },
+  "publicPrice": {
+    "endpoint": "https://taptab.mythicmindlabs.workers.dev/api/mon-price",
+    "status": 200,
+    "bytes": 154,
+    "sha256": "0e41ca1f2146ea4e18414ab01e96ed4226ed8081a4cba33c6457a8dfbfeef910",
+    "probedAt": "2026-08-07T17:58:21.211Z",
+    "source": "CoinGecko",
+    "basis": "mainnet MON",
+    "usdPerMon": "0.020884",
+    "gbpPerMon": "0.01547237",
+    "lastUpdatedAtUnixSeconds": 1786125380,
+    "policy": {
+      "primary": "CoinGecko",
+      "fallback": "Coinbase"
+    },
+    "boundary": "This live display price is distinct from bill 1's immutable locked quote."
+  },
+  "integrity": {
+    "receiptStatusConvention": "1 means successful execution",
+    "runtimeBytecodeHashAlgorithm": "Keccak-256 over eth_getCode runtime bytecode",
+    "observedViaPublicRpc": true
+  },
+  "liveValidation": {
+    "checkedAt": "2026-08-07T17:08:15Z",
+    "command": "npm --prefix contracts run check:taptab",
+    "result": "passed",
+    "latestBlock": 51723944,
+    "rpcRoundTripMilliseconds": 678,
+    "contractAddress": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "billId": "2",
+    "billSubtotalMon": "3.157527415150402471",
+    "evidenceLog": {
+      "path": "outputs/monad-testnet-live-check-20260807.log",
+      "sha256": "5483860a0ec64c1ae4ab5316c70bd52bc7be2df1ad0e6f748c0e3f290e340b5d",
+      "bytes": 607
+    },
+    "boundary": "This validates public RPC reads only; it does not evidence participant wallet writes or settlement."
+  },
+  "boundary": {
+    "publicWritesEvidenced": [
+      "contract deployment",
+      "bill 1 creation",
+      "canonical live demo bill 2 creation"
+    ],
+    "multiWalletSignatureRehearsal": false,
+    "participantWriteRehearsal": false,
+    "fundingRehearsal": false,
+    "settlementRehearsal": false,
+    "cancellationOrRefundRehearsal": false,
+    "privateKeyIncluded": false,
+    "statement": "This file proves deployment and bill creation, records the source-verification status reported by MonadVision, and captures public read readiness. The later participant settlement and refund evidence is recorded separately in docs/submission/monad-testnet-multiwallet-evidence.json.",
+    "lifecycleEvidencePath": "docs/submission/monad-testnet-multiwallet-evidence.json",
+    "lifecycleEvidenceSha256": "5dbf6313b340fa9f299e735b91cba0d298c390c8998fcf5fe1bf1e9d1e7197a6"
+  },
+  "videoStatus": {
+    "path": "docs/submission/video/2min/taptab-demo-2min.mp4",
+    "status": "current-definitive-v5-full-window",
+    "sha256": "7c8895c78647136ea0bc7317c4a0d4c8b199f4243211b319114202a5429cc8e6",
+    "bytes": 7941645,
+    "durationSeconds": 119,
+    "pixelWidth": 1920,
+    "pixelHeight": 1080,
+    "framesPerSecond": 30,
+    "videoFrameCount": 3570,
+    "videoCodec": "h264",
+    "pixelFormat": "yuv420p",
+    "audioCodec": "aac",
+    "audioSampleRate": 48000,
+    "audioChannels": 2,
+    "decodedIntegratedLoudnessLufs": -16.04,
+    "decodedTruePeakDbtp": -2.76,
+    "fullWindowSeconds": 75.967,
+    "continuousCaptureSeconds": 15,
+    "continuousCaptureFrames": 450,
+    "continuousCaptureInternalCuts": 0,
+    "magnifiedCropSeconds": 0,
+    "historicalSettlementReplay": {
+      "transactionHash": "0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "explorerStatus": "Success",
+      "newTransactionBroadcast": false
+    },
+    "canonicalBill2Qr": "https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live",
+    "statement": "The definitive V5 video keeps the complete application window visible without magnified crops, includes a 15-second uncut public-sample interaction, separates purple local, green confirmed Testnet and amber protected-refund states, and replays the retained Bill 3 settlement into its genuine Monadscan Success receipt without broadcasting a new transaction. Its final QR opens the separate canonical Bill 2, which is created and publicly readable but remains Draft; sponsorship is shown only as a labelled local sample."
+  }
+}

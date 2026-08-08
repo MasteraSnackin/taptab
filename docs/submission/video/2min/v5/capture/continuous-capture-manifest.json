@@ -1,0 +1,99 @@
+{
+  "schema": "taptab-continuous-public-sample-capture",
+  "version": 1,
+  "capturedAt": "2026-08-07T20:17:07.265Z",
+  "source": {
+    "url": "https://taptab.mythicmindlabs.workers.dev/",
+    "workspace": "Sample bill · local only",
+    "walletWrite": false,
+    "browser": "Playwright Chromium",
+    "viewport": {
+      "width": 1856,
+      "height": 1000
+    }
+  },
+  "continuity": {
+    "singleBrowserContext": true,
+    "singleRawVideoFile": true,
+    "internalCuts": 0,
+    "endpointTrimOnly": true,
+    "trimRule": "The final 15 seconds of one raw Playwright recording retain a stable pre-roll and the complete planned interaction; endpoint trimming only",
+    "finalDurationSeconds": 15,
+    "frames": 450
+  },
+  "actions": [
+    {
+      "action": "Continuous take begins on the volunteer-controlled fair-remainder and tip controls",
+      "milliseconds": 0
+    },
+    {
+      "action": "12.5% tip selected in the real sample controls",
+      "milliseconds": 2501
+    },
+    {
+      "action": "The updated pound total opened for review",
+      "milliseconds": 3300
+    },
+    {
+      "action": "The exact split approved through the real sample guide",
+      "milliseconds": 4201
+    },
+    {
+      "action": "The approved split reopened at the real tip and extras controls",
+      "milliseconds": 6802
+    },
+    {
+      "action": "A new 10% vote changed the split and cleared the previous approvals",
+      "milliseconds": 7100
+    },
+    {
+      "action": "The changed split reopened for review with consent reset",
+      "milliseconds": 7801
+    },
+    {
+      "action": "Continuous interaction recording completed",
+      "milliseconds": 13302
+    }
+  ],
+  "finalState": {
+    "url": "https://taptab.mythicmindlabs.workers.dev/?workspace=preview&preview=table-7#bill",
+    "guideHeading": "Sponsor someone",
+    "sampleLabelVisible": true,
+    "viewport": {
+      "width": 1856,
+      "scrollWidth": 1856
+    }
+  },
+  "consoleErrors": [],
+  "artifacts": {
+    "raw": {
+      "path": "docs/submission/video/2min/v5/generated/continuous-raw/page@8d554c259002a7eb6a97c9e86232d0b0.webm",
+      "bytes": 1802726,
+      "sha256": "a43791cce68ac2efb05b353dd6869bebe9005894f1785ef99c74e173a68cdc2e",
+      "durationSeconds": 19.4,
+      "ignoredIntermediate": true
+    },
+    "releaseCapture": {
+      "path": "docs/submission/video/2min/v5/capture/continuous-public-sample-15s.mp4",
+      "bytes": 1279802,
+      "sha256": "74836bee8192056caf8d75c6252f8b830416b68396ad0a593918738d034a237f",
+      "durationSeconds": 15
+    },
+    "contactSheet": {
+      "path": "docs/submission/video/2min/v5/capture/continuous-contact-sheet.jpg",
+      "bytes": 125198,
+      "sha256": "b62263b20d3b30d3c20e2fcbe3329333c19693cfa1ff9382a2241dbcb410e7fe",
+      "sampledSeconds": [
+        1.5,
+        3.5,
+        4.5,
+        6,
+        8.5,
+        10,
+        12,
+        14
+      ]
+    }
+  },
+  "boundary": "This is one uncut public-sample browser stream showing fair-remainder controls, tip/approval and a consent-clearing change. It uses endpoint trimming only and is not a wallet transaction or Monad Testnet write."
+}

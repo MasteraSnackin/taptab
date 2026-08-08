@@ -1,0 +1,169 @@
+{
+  "version": "v3",
+  "runtimeSeconds": 117,
+  "voice": {
+    "provider": "ElevenLabs",
+    "name": "Nora - Blackpool Product Guide",
+    "model": "Eleven Multilingual v2",
+    "speed": 1,
+    "stability": 0.5,
+    "similarity": 0.75,
+    "styleExaggeration": 0,
+    "speakerBoost": true,
+    "sourceFormat": "MP3 44.1 kHz mono 128 kbps"
+  },
+  "master": {
+    "file": "narration-master.wav",
+    "format": "PCM signed 24-bit little-endian",
+    "sampleRateHz": 48000,
+    "channels": 2,
+    "durationSeconds": 117,
+    "integratedLoudnessLufs": -16,
+    "truePeakDbfs": -2.7
+  },
+  "captions": {
+    "json": "captions.json",
+    "srt": "narration-v3.srt",
+    "cueCount": 31,
+    "lastSpokenCueEndSeconds": 111.74
+  },
+  "auxiliaryAudio": {
+    "musicBed": {
+      "file": "music-bed.wav",
+      "durationSeconds": 117,
+      "sampleRateHz": 48000,
+      "channels": 2,
+      "integratedLoudnessLufs": -34,
+      "truePeakDbfs": -26.8,
+      "sources": [
+        "73.42 Hz sine",
+        "110 Hz sine",
+        "146.83 Hz sine",
+        "seeded filtered pink noise"
+      ]
+    },
+    "uiSfx": {
+      "file": "ui-sfx.wav",
+      "durationSeconds": 117,
+      "sampleRateHz": 48000,
+      "channels": 2,
+      "integratedLoudnessLufs": -40.2,
+      "truePeakDbfs": -27.9,
+      "events": [
+        { "time": 9.22, "type": "click", "meaning": "shared-item claim" },
+        { "time": 23.18, "type": "click", "meaning": "fair-remainder choice" },
+        { "time": 28.18, "type": "click", "meaning": "tip vote" },
+        { "time": 33, "type": "click", "meaning": "split approval" },
+        { "time": 37.65, "type": "click", "meaning": "self-payment" },
+        { "time": 44.65, "type": "click", "meaning": "sponsor selection" },
+        { "time": 51.65, "type": "click", "meaning": "sponsor contribution" },
+        { "time": 54.65, "type": "click", "meaning": "exact funding" },
+        { "time": 60.2, "type": "confirm", "meaning": "Stage settled" },
+        { "time": 65, "type": "settle", "meaning": "successful settlement" },
+        { "time": 70, "type": "refund", "meaning": "refunds opened" },
+        { "time": 72.5, "type": "confirm", "meaning": "refund returned" },
+        { "time": 89, "type": "confirm", "meaning": "live Bill 2 evidence" },
+        { "time": 105, "type": "confirm", "meaning": "final live-bill CTA" }
+      ]
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "editorialStart": 0,
+      "editorialEnd": 5,
+      "audioFile": "scene-01.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 0.2,
+      "audioDuration": 3.604875,
+      "audioEnd": 3.804875,
+      "headroomBeforeBoundary": 1.195125,
+      "script": "TapTab on Monad splits restaurant bills, so nobody fronts the money."
+    },
+    {
+      "id": "scene-02",
+      "editorialStart": 5,
+      "editorialEnd": 21,
+      "audioFile": "scene-02.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 5.2,
+      "audioDuration": 10.527313,
+      "audioEnd": 15.727313,
+      "headroomBeforeBoundary": 5.272687,
+      "script": "This fifty-three pound ninety-five table is a clearly labelled local sample. Diners claim whole items or selected shares of wine and starters. Each pound total updates instantly."
+    },
+    {
+      "id": "scene-03",
+      "editorialStart": 21,
+      "editorialEnd": 35,
+      "audioFile": "scene-03.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 21.2,
+      "audioDuration": 8.59425,
+      "audioEnd": 29.79425,
+      "headroomBeforeBoundary": 5.20575,
+      "script": "Only volunteers share the fair remainder. The table votes on the tip, then every diner approves the same split. Any change clears consent."
+    },
+    {
+      "id": "scene-04",
+      "editorialStart": 35,
+      "editorialEnd": 57,
+      "audioFile": "scene-04.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 35.2,
+      "audioDuration": 17.92,
+      "audioEnd": 53.12,
+      "headroomBeforeBoundary": 3.88,
+      "script": "Payment opens only after approval. Each diner funds exactly what they owe, or sponsors somebody else without changing the underlying obligation. If eighteen pounds ninety-one is still missing, settlement stays locked. Once the full fifty-three pounds ninety-five arrives, the venue can be paid."
+    },
+    {
+      "id": "scene-05",
+      "editorialStart": 57,
+      "editorialEnd": 65,
+      "audioFile": "scene-05.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 57.2,
+      "audioDuration": 4.728125,
+      "audioEnd": 61.928125,
+      "headroomBeforeBoundary": 3.071875,
+      "script": "Stage Mode turns the same live table state into a room-readable progress board."
+    },
+    {
+      "id": "scene-06",
+      "editorialStart": 65,
+      "editorialEnd": 83,
+      "audioFile": "scene-06.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 65.2,
+      "audioDuration": 12.852188,
+      "audioEnd": 78.052188,
+      "headroomBeforeBoundary": 4.947812,
+      "script": "The contract protects both outcomes. Exact funding unlocks settlement. Cancellation or expiry pays the venue nothing, and opens refunds to each original contributor, including a sponsor."
+    },
+    {
+      "id": "scene-07",
+      "editorialStart": 83,
+      "editorialEnd": 105,
+      "audioFile": "scene-07.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 83.2,
+      "audioDuration": 20.088125,
+      "audioEnd": 103.288125,
+      "headroomBeforeBoundary": 1.711875,
+      "script": "Now switch from the fifty-three pound ninety-five local sample to live evidence. Bill 2 represents forty-eight pounds fifty on Monad Testnet, with a confirmed creation transaction. Monad turns claims, approvals, sponsored payments and refunds into fast shared state for the whole table, without a central bill keeper."
+    },
+    {
+      "id": "scene-08",
+      "editorialStart": 105,
+      "editorialEnd": 117,
+      "audioFile": "scene-08.mp3",
+      "audioOffset": 0.2,
+      "audioStart": 105.2,
+      "audioDuration": 6.765688,
+      "audioEnd": 111.965688,
+      "headroomBeforeBoundary": 5.034312,
+      "script": "The contract source has a Sourcify perfect match, and the public app is ready. Scan to open live Bill 2."
+    }
+  ],
+  "productionBoundary": "Sample interactions are shown; a real multi-wallet Monad write, settlement and refund rehearsal remains to be recorded."
+}

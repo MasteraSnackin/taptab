@@ -1,0 +1,662 @@
+{
+  "schema": "taptab-monad-testnet-multiwallet-rehearsal",
+  "version": 1,
+  "generatedAt": "2026-08-07T18:29:44.295Z",
+  "boundary": "Public Monad Testnet evidence. Testnet MON has no cash value. Private keys are excluded.",
+  "chain": {
+    "name": "Monad Testnet",
+    "chainId": "10143",
+    "finalBlock": 51740007
+  },
+  "contract": {
+    "address": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "explorerUrl": "https://testnet.monadvision.com/address/0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198"
+  },
+  "actors": {
+    "creator": {
+      "label": "Creator",
+      "address": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3"
+    },
+    "alice": {
+      "label": "Alice",
+      "address": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90"
+    },
+    "bob": {
+      "label": "Bob",
+      "address": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09"
+    }
+  },
+  "preflight": {
+    "creatorBalanceBeforeWei": "3098649063527308291",
+    "minimumRequiredWei": "1200000000000000000",
+    "participantFundingTargetWei": "350000000000000000",
+    "priorFundingAttempts": [
+      {
+        "label": "Fund Alice rehearsal wallet",
+        "hash": "0x6f075b9910a031209aa65ddbe2b5ebdf9b98ea45521fd0a59cf3b6411ac95ebb",
+        "explorerUrl": "https://testnet.monadvision.com/tx/0x6f075b9910a031209aa65ddbe2b5ebdf9b98ea45521fd0a59cf3b6411ac95ebb",
+        "status": "confirmed",
+        "valueWei": "350000000000000000"
+      },
+      {
+        "label": "Initial Bob funding attempt",
+        "hash": "0x384df466938bcacfb837113eb3dac7f55423f53047c1d2324d7181f64ce4a0e8",
+        "explorerUrl": "https://testnet.monadvision.com/tx/0x384df466938bcacfb837113eb3dac7f55423f53047c1d2324d7181f64ce4a0e8",
+        "status": "reverted",
+        "gasUsed": "21000",
+        "note": "The RPC estimated a 21,000-gas new-account transfer which reverted. The retry uses an explicit 50,000-gas ceiling."
+      },
+      {
+        "label": "Fund Bob rehearsal wallet with explicit gas ceiling",
+        "hash": "0xbde920741b57fc4c85508c4dd71fd214f5d0315eac034a7db897ccc907a5f9bc",
+        "explorerUrl": "https://testnet.monadvision.com/tx/0xbde920741b57fc4c85508c4dd71fd214f5d0315eac034a7db897ccc907a5f9bc",
+        "status": "confirmed",
+        "valueWei": "350000000000000000",
+        "gasUsed": "50000"
+      }
+    ]
+  },
+  "journeys": {
+    "settlement": {
+      "billId": "3",
+      "canonicalUrl": "https://testnet.monadvision.com/address/0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198?tab=Contract",
+      "participants": [
+        {
+          "label": "Creator",
+          "address": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+          "amountDueWei": "1125000000000000"
+        },
+        {
+          "label": "Alice",
+          "address": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+          "amountDueWei": "1125000000000000"
+        },
+        {
+          "label": "Bob",
+          "address": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+          "amountDueWei": "1125000000000000"
+        }
+      ],
+      "incompleteSettlementRefusal": {
+        "method": "historical eth_call",
+        "blockTag": 51738556,
+        "name": "BillNotFullyFunded",
+        "selector": "0x487ec984",
+        "fundedWei": "1125000000000000",
+        "totalDueWei": "3375000000000000",
+        "revertData": "0x487ec9840000000000000000000000000000000000000000000000000003ff2e795f5000000000000000000000000000000000000000000000000000000bfd8b6c1df000"
+      },
+      "finalState": "Settled",
+      "exactFundingConfirmed": true,
+      "proceedsWithdrawn": true
+    },
+    "cancellationRefund": {
+      "billId": "4",
+      "finalState": "Cancelled",
+      "contributionsWei": {
+        "alice": "333750000000000",
+        "bob": "333750000000000"
+      },
+      "refundsClaimedByOriginalContributors": true
+    }
+  },
+  "checks": [
+    "three distinct wallets signed the successful journey",
+    "three deterministic item-share claims",
+    "unanimous approval of one split digest",
+    "incomplete settlement refused",
+    "exact participant funding",
+    "successful settlement and payee withdrawal",
+    "incomplete-bill cancellation",
+    "refunds returned to both original contributors"
+  ],
+  "transactions": [
+    {
+      "hash": "0xf0639e3be7b651272f1e0934ef8097c6fc68a839dc8dafd5079bb2c0a16e4a82",
+      "blockNumber": 51738517,
+      "logIndex": 1,
+      "billId": "3",
+      "events": [
+        "BillCreated"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xf0639e3be7b651272f1e0934ef8097c6fc68a839dc8dafd5079bb2c0a16e4a82",
+      "transactionIndex": 1,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 6,
+      "gasUsed": "589720",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xf4b9e75e686e8bf6caaafb76fc9d4a6c27dd731c1872ec33f297202edb5f6cde",
+      "blockNumber": 51738520,
+      "logIndex": 5,
+      "billId": "3",
+      "events": [
+        "ParticipantInvited",
+        "ParticipantInvited",
+        "ParticipantInvited"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xf4b9e75e686e8bf6caaafb76fc9d4a6c27dd731c1872ec33f297202edb5f6cde",
+      "transactionIndex": 2,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 7,
+      "gasUsed": "199955",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xc2d27fb244a28a694e73d9546b376cd51622c3d21dc6ff53cb74f5c1b99b78f1",
+      "blockNumber": 51738522,
+      "logIndex": 1,
+      "billId": "3",
+      "events": [
+        "SplitVersionAdvanced",
+        "ParticipantJoined"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xc2d27fb244a28a694e73d9546b376cd51622c3d21dc6ff53cb74f5c1b99b78f1",
+      "transactionIndex": 1,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 8,
+      "gasUsed": "173569",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x0eae21e4c6b2dffede36d1bed5e84f1ae6b96f21c3bcc56115748db92e2a6b38",
+      "blockNumber": 51738525,
+      "logIndex": 1,
+      "billId": "3",
+      "events": [
+        "ItemShareClaimed",
+        "SplitVersionAdvanced"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x0eae21e4c6b2dffede36d1bed5e84f1ae6b96f21c3bcc56115748db92e2a6b38",
+      "transactionIndex": 1,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 9,
+      "gasUsed": "113128",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xa68a86c5641019b8f7459e24230fe02d2093ca35e63243f44db700229a11f63c",
+      "blockNumber": 51738529,
+      "logIndex": 1,
+      "billId": "3",
+      "events": [
+        "SplitVersionAdvanced",
+        "ParticipantJoined"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xa68a86c5641019b8f7459e24230fe02d2093ca35e63243f44db700229a11f63c",
+      "transactionIndex": 1,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 0,
+      "gasUsed": "155126",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x45acb525c3883514c4c73778e9927ecee2339a16c461f20224b2fb5151981f26",
+      "blockNumber": 51738532,
+      "logIndex": 11,
+      "billId": "3",
+      "events": [
+        "ItemShareClaimed",
+        "SplitVersionAdvanced"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x45acb525c3883514c4c73778e9927ecee2339a16c461f20224b2fb5151981f26",
+      "transactionIndex": 3,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 1,
+      "gasUsed": "113140",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x0eaee58a4125d0ed580c017d8231e7562e87252823cbb65ce388033217536336",
+      "blockNumber": 51738536,
+      "logIndex": 8,
+      "billId": "3",
+      "events": [
+        "SplitVersionAdvanced",
+        "ParticipantJoined"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x0eaee58a4125d0ed580c017d8231e7562e87252823cbb65ce388033217536336",
+      "transactionIndex": 3,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 0,
+      "gasUsed": "155138",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x66650292951bc460c01da4afe6e3eee29b50a864311a1e713cf986181db9e08d",
+      "blockNumber": 51738538,
+      "logIndex": 1,
+      "billId": "3",
+      "events": [
+        "ItemShareClaimed",
+        "SplitVersionAdvanced"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x66650292951bc460c01da4afe6e3eee29b50a864311a1e713cf986181db9e08d",
+      "transactionIndex": 1,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 1,
+      "gasUsed": "113140",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x6932c2e14d19d587d0cc4e3ab3e236759a2cfaca20fdafc4ca4f133b1376f152",
+      "blockNumber": 51738540,
+      "logIndex": 9,
+      "billId": "3",
+      "events": [
+        "SplitApproved"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x6932c2e14d19d587d0cc4e3ab3e236759a2cfaca20fdafc4ca4f133b1376f152",
+      "transactionIndex": 3,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 10,
+      "gasUsed": "227595",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x12990cd67d34b46d31d1a52f3ac56381c1505a59a8ea9ad70a85ae069136cdee",
+      "blockNumber": 51738546,
+      "logIndex": 4,
+      "billId": "3",
+      "events": [
+        "SplitApproved"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x12990cd67d34b46d31d1a52f3ac56381c1505a59a8ea9ad70a85ae069136cdee",
+      "transactionIndex": 2,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 2,
+      "gasUsed": "90776",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x3a112a4ff2b2d786910510bee9c7acfb153e6e7def3b687494c2a00e85f4c3b7",
+      "blockNumber": 51738549,
+      "logIndex": 20,
+      "billId": "3",
+      "events": [
+        "SplitApproved"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x3a112a4ff2b2d786910510bee9c7acfb153e6e7def3b687494c2a00e85f4c3b7",
+      "transactionIndex": 5,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 2,
+      "gasUsed": "90776",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x00a8aa47984a612a1fcf8aa7169c96b26c85a083f0e657f6eaba6e461cca4388",
+      "blockNumber": 51738553,
+      "logIndex": 1,
+      "billId": "3",
+      "events": [
+        "ParticipantDueLocked",
+        "ParticipantDueLocked",
+        "ParticipantDueLocked",
+        "FundingOpened"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x00a8aa47984a612a1fcf8aa7169c96b26c85a083f0e657f6eaba6e461cca4388",
+      "transactionIndex": 1,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 11,
+      "gasUsed": "504949",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xfa084282835c337a1e0efb0789785819cde79d990d649023f39f430538d81443",
+      "blockNumber": 51738556,
+      "logIndex": 13,
+      "billId": "3",
+      "events": [
+        "ContributionReceived"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xfa084282835c337a1e0efb0789785819cde79d990d649023f39f430538d81443",
+      "transactionIndex": 3,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 12,
+      "gasUsed": "144074",
+      "gasPriceWei": "102000000000",
+      "valueWei": "1125000000000000"
+    },
+    {
+      "hash": "0xa541250066d37439241b43591badcac560cc4048d0dac386740fd4cd1a81e035",
+      "blockNumber": 51738997,
+      "logIndex": 5,
+      "billId": "3",
+      "events": [
+        "ContributionReceived"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xa541250066d37439241b43591badcac560cc4048d0dac386740fd4cd1a81e035",
+      "transactionIndex": 2,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 3,
+      "gasUsed": "126906",
+      "gasPriceWei": "102000000000",
+      "valueWei": "1125000000000000"
+    },
+    {
+      "hash": "0xc5c7709a918bbdfefc0c36660f3538f804ebb9ddc5e6825bb6d8a6749c2df2b9",
+      "blockNumber": 51739000,
+      "logIndex": 5,
+      "billId": "3",
+      "events": [
+        "ContributionReceived"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xc5c7709a918bbdfefc0c36660f3538f804ebb9ddc5e6825bb6d8a6749c2df2b9",
+      "transactionIndex": 2,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 3,
+      "gasUsed": "126906",
+      "gasPriceWei": "102000000000",
+      "valueWei": "1125000000000000"
+    },
+    {
+      "hash": "0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "blockNumber": 51739005,
+      "logIndex": 9,
+      "billId": "3",
+      "events": [
+        "BillSettled"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "transactionIndex": 3,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 15,
+      "gasUsed": "51123",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xd5c6d4794fd7a19a5af3bee8f65eaeb3cce8988778c64f3ab4fe3f591178774a",
+      "blockNumber": 51739010,
+      "logIndex": 5,
+      "billId": "3",
+      "events": [
+        "ProceedsWithdrawn"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xd5c6d4794fd7a19a5af3bee8f65eaeb3cce8988778c64f3ab4fe3f591178774a",
+      "transactionIndex": 2,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 16,
+      "gasUsed": "71941",
+      "gasPriceWei": "105496361583",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x7e23a9d811b13974ca0b6e7c8285585321bfd95d4655df40b98e24947e755ac9",
+      "blockNumber": 51739013,
+      "logIndex": 1,
+      "billId": "4",
+      "events": [
+        "BillCreated"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x7e23a9d811b13974ca0b6e7c8285585321bfd95d4655df40b98e24947e755ac9",
+      "transactionIndex": 1,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 17,
+      "gasUsed": "618686",
+      "gasPriceWei": "103000000001",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x22b9fd4da8fb10c0317dfc2a375adca7f3d9b446be38091e00c88b125adef272",
+      "blockNumber": 51739019,
+      "logIndex": 9,
+      "billId": "4",
+      "events": [
+        "ParticipantInvited",
+        "ParticipantInvited"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x22b9fd4da8fb10c0317dfc2a375adca7f3d9b446be38091e00c88b125adef272",
+      "transactionIndex": 3,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 18,
+      "gasUsed": "151057",
+      "gasPriceWei": "103000000001",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xceaf67b2c92d1b52f96adaca89d899347724f00177689f2e760c203b0d748fa4",
+      "blockNumber": 51739021,
+      "logIndex": 14,
+      "billId": "4",
+      "events": [
+        "SplitVersionAdvanced",
+        "ParticipantJoined"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xceaf67b2c92d1b52f96adaca89d899347724f00177689f2e760c203b0d748fa4",
+      "transactionIndex": 4,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 4,
+      "gasUsed": "173569",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x92a1fb88fde25790ec00d3c86ffc54aaa04646facf1d724ee8d62b9341fd05df",
+      "blockNumber": 51739023,
+      "logIndex": 7,
+      "billId": "4",
+      "events": [
+        "ItemShareClaimed",
+        "SplitVersionAdvanced"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x92a1fb88fde25790ec00d3c86ffc54aaa04646facf1d724ee8d62b9341fd05df",
+      "transactionIndex": 4,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 5,
+      "gasUsed": "113128",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x797d23939896b70588b77e1eb3e09a20dc50374936b301d7e72043795924e043",
+      "blockNumber": 51739025,
+      "logIndex": 9,
+      "billId": "4",
+      "events": [
+        "SplitVersionAdvanced",
+        "ParticipantJoined"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x797d23939896b70588b77e1eb3e09a20dc50374936b301d7e72043795924e043",
+      "transactionIndex": 3,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 4,
+      "gasUsed": "155126",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x8c31c764626861c6f62acd57c4261bb541012ae267013641e61816f2756ce0b3",
+      "blockNumber": 51739030,
+      "logIndex": 4,
+      "billId": "4",
+      "events": [
+        "ItemShareClaimed",
+        "SplitVersionAdvanced"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x8c31c764626861c6f62acd57c4261bb541012ae267013641e61816f2756ce0b3",
+      "transactionIndex": 2,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 5,
+      "gasUsed": "113140",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x0ed78b0661127a97c3df88aa8f9ae90d2ca80d2f73293a12192c16ab82e595c8",
+      "blockNumber": 51739034,
+      "logIndex": 12,
+      "billId": "4",
+      "events": [
+        "SplitApproved"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x0ed78b0661127a97c3df88aa8f9ae90d2ca80d2f73293a12192c16ab82e595c8",
+      "transactionIndex": 2,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 6,
+      "gasUsed": "201609",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x82320b103f65108d857ad41f5d9480def711eced1beaa9eb1a30e818ee787d41",
+      "blockNumber": 51739037,
+      "logIndex": 62,
+      "billId": "4",
+      "events": [
+        "SplitApproved"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x82320b103f65108d857ad41f5d9480def711eced1beaa9eb1a30e818ee787d41",
+      "transactionIndex": 7,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 6,
+      "gasUsed": "90776",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x2e133f680a29b0f32e3a2cf0ccee8abb954e8725596f61e4ee9dc1bf3a38d063",
+      "blockNumber": 51739041,
+      "logIndex": 5,
+      "billId": "4",
+      "events": [
+        "ParticipantDueLocked",
+        "ParticipantDueLocked",
+        "FundingOpened"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x2e133f680a29b0f32e3a2cf0ccee8abb954e8725596f61e4ee9dc1bf3a38d063",
+      "transactionIndex": 2,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 19,
+      "gasUsed": "378742",
+      "gasPriceWei": "113948180791",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x9f43700f2c2d5eef7b3f0e94272c89511993e9a7d31d9b642d6630226a4ef2b7",
+      "blockNumber": 51739044,
+      "logIndex": 9,
+      "billId": "4",
+      "events": [
+        "ContributionReceived"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x9f43700f2c2d5eef7b3f0e94272c89511993e9a7d31d9b642d6630226a4ef2b7",
+      "transactionIndex": 3,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 7,
+      "gasUsed": "144074",
+      "gasPriceWei": "102000000000",
+      "valueWei": "333750000000000"
+    },
+    {
+      "hash": "0x0a97894cdc59db26f3b45566dafb1d052848764172e324d304b4238082c67b2a",
+      "blockNumber": 51739047,
+      "logIndex": 5,
+      "billId": "4",
+      "events": [
+        "ContributionReceived"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x0a97894cdc59db26f3b45566dafb1d052848764172e324d304b4238082c67b2a",
+      "transactionIndex": 2,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 7,
+      "gasUsed": "126906",
+      "gasPriceWei": "102000000000",
+      "valueWei": "333750000000000"
+    },
+    {
+      "hash": "0x8f1b52276c4aa701d7db70589af003e1040cd3ad618f37f5c506cf38cf76ab52",
+      "blockNumber": 51739051,
+      "logIndex": 9,
+      "billId": "4",
+      "events": [
+        "BillCancelled"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x8f1b52276c4aa701d7db70589af003e1040cd3ad618f37f5c506cf38cf76ab52",
+      "transactionIndex": 3,
+      "from": "0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 20,
+      "gasUsed": "60137",
+      "gasPriceWei": "103000000001",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0x396144f991a81f1950c8603269d502e912483eb62e10107df7e5d033afdec450",
+      "blockNumber": 51739054,
+      "logIndex": 4,
+      "billId": "4",
+      "events": [
+        "RefundClaimed"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x396144f991a81f1950c8603269d502e912483eb62e10107df7e5d033afdec450",
+      "transactionIndex": 3,
+      "from": "0x267AE7f7e7c5eCbfBA73247aEd460BD66BAf8F90",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 8,
+      "gasUsed": "63663",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    },
+    {
+      "hash": "0xf6ed1a75337cf215077aeba890dfd3a6e9e5f8d85aaa991060c02fffbfca9384",
+      "blockNumber": 51739059,
+      "logIndex": 5,
+      "billId": "4",
+      "events": [
+        "RefundClaimed"
+      ],
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xf6ed1a75337cf215077aeba890dfd3a6e9e5f8d85aaa991060c02fffbfca9384",
+      "transactionIndex": 2,
+      "from": "0xCF2D014E690Fa2eCd3040440aA983d19e9644d09",
+      "to": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+      "nonce": 8,
+      "gasUsed": "63663",
+      "gasPriceWei": "102000000000",
+      "valueWei": "0"
+    }
+  ],
+  "finalCreatorBalanceWei": "3098649063527308291",
+  "privateWalletFile": "outputs/taptab-testnet-rehearsal-wallets.json (git-ignored, mode 0600)"
+}

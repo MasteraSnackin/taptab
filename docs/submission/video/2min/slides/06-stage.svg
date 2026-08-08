@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#0d0f16"/>
+  <rect x="142" y="12" width="1636" height="930" rx="24" fill="#171a24" stroke="#343848" stroke-width="2"/>
+  <rect y="950" width="1920" height="130" fill="#11141d"/>
+  <rect x="60" y="976" width="140" height="64" rx="32" fill="#6d45ff"/>
+  <text x="130" y="1018" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="25" font-weight="700">06 / 06</text>
+  <text x="232" y="1007" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="700">Stage Mode makes progress visible</text>
+  <text x="232" y="1045" fill="#b9bdca" font-family="Arial, sans-serif" font-size="25">Projector-safe funding, settlement, refunds and labelled evidence</text>
+</svg>

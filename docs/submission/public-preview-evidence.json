@@ -1,0 +1,158 @@
+{
+  "schema": "taptab-public-preview-evidence",
+  "version": 4,
+  "capturedAt": "2026-08-07T18:49:23.614Z",
+  "sourceRevision": "27ecdb48ed9fbdd1fa50a8661aa39c1d7379cd4d",
+  "deployment": {
+    "provider": "Cloudflare Workers",
+    "worker": "taptab",
+    "versionId": "28fa6666-c9cc-4734-b465-1587f82d4946",
+    "createdAt": "2026-08-07T18:48:42.557Z",
+    "trafficPercent": 100,
+    "origin": "https://taptab.mythicmindlabs.workers.dev",
+    "canonicalBillUrl": "https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live"
+  },
+  "http": {
+    "page": {
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 80865,
+      "sha256": "0bfa8b20c670dc7837403031f08bafb9b5b42a5ee01964785ecd1220cdc30cfb"
+    },
+    "liveness": {
+      "path": "/api/health/live",
+      "status": 200,
+      "cacheControl": "no-store",
+      "responseBytes": 124,
+      "service": "taptab",
+      "result": "ok"
+    },
+    "readiness": {
+      "path": "/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store",
+      "responseBytes": 293,
+      "chainId": 10143,
+      "observedBlock": 51743923,
+      "checks": {
+        "configuration": "pass",
+        "rpc": "pass",
+        "network": "pass",
+        "contract": "pass",
+        "bill": "pass"
+      }
+    },
+    "price": {
+      "path": "/api/mon-price",
+      "status": 200,
+      "quoteStatus": "live",
+      "source": "CoinGecko",
+      "basis": "mainnet MON",
+      "usdPerMon": "0.02079865",
+      "gbpPerMon": "0.01540812",
+      "observedAtUnixSeconds": 1786128430
+    },
+    "personalPaymentRoute": {
+      "path": "/pay?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2&beneficiary=0x1091A22b34e0E6BFb93C31913B926335EFB078D3",
+      "status": 200,
+      "bytes": 17702,
+      "sha256": "57fda41a244f15d4450d552fd90e0e6caf95d38317af038943406ba77346e9b9"
+    },
+    "manifest": {
+      "path": "/manifest.webmanifest",
+      "status": 200,
+      "contentType": "application/manifest+json",
+      "bytes": 679,
+      "sha256": "0af78c99ddd92ad0db99b81e65d45873f133f73503289347832650d448d6f076"
+    },
+    "openGraphImage": {
+      "path": "/og.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": 910468,
+      "sha256": "428aec5d0e96700c294916b98768c9646c2ef5746248fd1774a1eeb891b07710"
+    }
+  },
+  "browser": {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "status": 200,
+    "title": "TapTab — Nobody fronts the bill",
+    "heading": "Claim what you had. Pay only your part.",
+    "tryTapTabVisible": true,
+    "sampleWorkspaceVisible": true,
+    "monadTestnetWorkspaceVisible": true,
+    "horizontalOverflow": false,
+    "consoleErrors": 0
+  },
+  "onchain": {
+    "network": "Monad Testnet",
+    "chainId": 10143,
+    "contract": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "canonicalBillId": "2",
+    "deploymentEvidence": "docs/submission/monad-testnet-deployment-evidence.json",
+    "multiWalletEvidence": "docs/submission/monad-testnet-multiwallet-evidence.json",
+    "multiWalletEvidenceSha256": "5dbf6313b340fa9f299e735b91cba0d298c390c8998fcf5fe1bf1e9d1e7197a6",
+    "rehearsal": {
+      "successfulContractTransactions": 31,
+      "successBill": "3",
+      "successFinalState": "Settled",
+      "refundBill": "4",
+      "refundFinalState": "Cancelled"
+    }
+  },
+  "video": {
+    "master": {
+      "path": "docs/submission/video/2min/taptab-demo-2min.mp4",
+      "durationSeconds": 119,
+      "bytes": 7941645,
+      "sha256": "7c8895c78647136ea0bc7317c4a0d4c8b199f4243211b319114202a5429cc8e6",
+      "fullWindowSeconds": 75.967,
+      "magnifiedCropSeconds": 0,
+      "continuousCaptureSeconds": 15,
+      "continuousCaptureFrames": 450,
+      "continuousCaptureInternalCuts": 0
+    },
+    "continuousCapture": {
+      "path": "docs/submission/video/2min/v5/capture/continuous-public-sample-15s.mp4",
+      "bytes": 1279802,
+      "sha256": "74836bee8192056caf8d75c6252f8b830416b68396ad0a593918738d034a237f",
+      "dimensions": "1856x1000",
+      "framesPerSecond": 30,
+      "frames": 450,
+      "internalCuts": 0,
+      "walletWrite": false,
+      "actions": [
+        "show fair-remainder and tip controls",
+        "select 12.5% tip",
+        "review and approve",
+        "reopen tip controls",
+        "change tip to 10%",
+        "review the cleared consent state"
+      ],
+      "boundary": "A single public-sample browser stream with endpoint trimming only; not a Monad Testnet write"
+    },
+    "explorerReplay": {
+      "transactionHash": "0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "url": "https://testnet.monadscan.com/tx/0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "status": "Success",
+      "mode": "Historical replay; no new transaction broadcast"
+    },
+    "teaser": {
+      "path": "docs/submission/video/2min/v5/teaser/taptab-teaser-15s.mp4",
+      "durationSeconds": 15,
+      "bytes": 1164603,
+      "sha256": "e51f25efe97d41ebaf2b0fb80df7107774aa80a3e015f19f949bd4e58bc2cee1"
+    },
+    "multiWalletEvidenceCut": {
+      "path": "docs/submission/video/2min/v5/evidence/taptab-multiwallet-evidence-30s.mp4",
+      "durationSeconds": 30,
+      "sha256": "c118bbeaf80a617d595ef36881af1c1a279dbe1ac7cc8ce6bf8f694b7c7c80a2"
+    },
+    "qrDecodedFromCompressedMaster": true,
+    "qrDestination": "https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live"
+  },
+  "boundary": "This captures the fully rolled-out Worker revision and public read paths. The local sample, including the sponsorship example, remains labelled and is not represented as a wallet transaction. Bill 3 is the settled rehearsal outcome; the QR opens the separate live Bill 2, which is created and publicly readable but remains Draft. Testnet MON has no cash value. Private rehearsal keys are excluded."
+}

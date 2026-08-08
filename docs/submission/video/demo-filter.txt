@@ -1,0 +1,5 @@
+[0:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.35,fade=t=out:st=5.65:d=0.35[s0];
+[1:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.35,fade=t=out:st=5.65:d=0.35[s1];
+[2:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.35,fade=t=out:st=5.65:d=0.35[s2];
+[3:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.35,fade=t=out:st=5.65:d=0.35[s3];
+[s0][s1][s2][s3]concat=n=4:v=1:a=0,format=yuv420p[outv]

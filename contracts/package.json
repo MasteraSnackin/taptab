@@ -1,0 +1,33 @@
+{
+  "name": "crowdcart-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CrowdCart group-purchase escrow contracts",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "rehearse:local": "hardhat run scripts/rehearse-taptab-local.cjs --network hardhat",
+    "rehearse:testnet": "hardhat run scripts/rehearse-taptab-testnet.cjs --network monadTestnet",
+    "benchmark:gas": "hardhat run scripts/benchmark-taptab-gas.cjs --network hardhat",
+    "wallet:create:testnet": "node scripts/bootstrap-testnet-wallet.cjs",
+    "check:testnet": "hardhat run scripts/check-taptab.cjs --network monadTestnet",
+    "check:taptab": "hardhat run scripts/check-taptab.cjs --network monadTestnet",
+    "deploy:monad": "hardhat run scripts/deploy.cjs --network monadTestnet",
+    "deploy:taptab": "hardhat run scripts/deploy-taptab.cjs --network monadTestnet",
+    "seed:taptab:scaled": "hardhat run scripts/seed-taptab-scaled.cjs --network monadTestnet",
+    "deploy:demo": "hardhat run scripts/deploy-demo.cjs --network monadTestnet",
+    "verify:taptab": "hardhat verify --network monadTestnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "2.1.2",
+    "@nomicfoundation/hardhat-ethers": "3.1.3",
+    "@nomicfoundation/hardhat-verify": "2.1.3",
+    "chai": "4.5.0",
+    "dotenv": "16.5.0",
+    "ethers": "6.17.0",
+    "hardhat": "2.29.0"
+  }
+}

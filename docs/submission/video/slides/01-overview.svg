@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#0f111a"/>
+  <rect x="252" y="28" width="1416" height="870" rx="26" fill="#f4f1eb" opacity="0.12"/>
+  <rect x="0" y="900" width="1920" height="180" fill="#0b0d14"/>
+  <text x="80" y="968" fill="#ffffff" font-family="Arial, sans-serif" font-size="52" font-weight="700">TapTab</text>
+  <text x="80" y="1028" fill="#d9dbe5" font-family="Arial, sans-serif" font-size="31">Split a restaurant bill without anyone fronting it</text>
+</svg>

@@ -1,0 +1,23 @@
+# SUPERSEDED V1/V2 FILTER RECORD — NOT USED BY THE CURRENT V3 MASTER.
+# Rebuild V3 with v3/build-v3.mjs.
+[0:v]fps=30,trim=duration=8,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=7.7:d=0.3[v0];
+[1:v]fps=30,trim=duration=8,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=7.7:d=0.3[v1];
+[2:v]fps=30,trim=duration=13,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=12.7:d=0.3[v2];
+[3:v]fps=30,trim=duration=7,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=6.7:d=0.3[v3];
+[4:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=5.7:d=0.3[v4];
+[5:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v5];
+[6:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=5.7:d=0.3[v6];
+[7:v]fps=30,trim=duration=7,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=6.7:d=0.3[v7];
+[8:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v8];
+[9:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v9];
+[10:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=5.7:d=0.3[v10];
+[11:v]fps=30,trim=duration=6,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=5.7:d=0.3[v11];
+[12:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v12];
+[13:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v13];
+[14:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v14];
+[15:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v15];
+[16:v]fps=30,trim=duration=8,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=7.7:d=0.3[v16];
+[17:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3,fade=t=out:st=4.7:d=0.3[v17];
+[18:v]fps=30,trim=duration=5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.3[v18];
+[v0][v1][v2][v3][v4][v5][v6][v7][v8][v9][v10][v11][v12][v13][v14][v15][v16][v17][v18]concat=n=19:v=1:a=0,format=yuv420p[vout];
+[19:a]atempo=0.892831915,loudnorm=I=-16:TP=-1.5:LRA=11,apad=whole_dur=120,atrim=duration=120[aout]

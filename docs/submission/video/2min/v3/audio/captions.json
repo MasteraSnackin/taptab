@@ -1,0 +1,157 @@
+[
+  {
+    "start": 0.37,
+    "end": 3.58,
+    "text": "TapTab on Monad splits restaurant bills, so nobody fronts the money."
+  },
+  {
+    "start": 5.37,
+    "end": 9.42,
+    "text": "This £53.95 table is a clearly labelled local sample."
+  },
+  {
+    "start": 9.67,
+    "end": 13.7,
+    "text": "Diners claim whole items or selected shares of wine and starters."
+  },
+  {
+    "start": 13.7,
+    "end": 15.54,
+    "text": "Each pound total updates instantly."
+  },
+  {
+    "start": 21.39,
+    "end": 23.5,
+    "text": "Only volunteers share the fair remainder."
+  },
+  {
+    "start": 23.76,
+    "end": 27.67,
+    "text": "The table votes on the tip, then every diner approves the same split."
+  },
+  {
+    "start": 28.13,
+    "end": 29.56,
+    "text": "Any change clears consent."
+  },
+  {
+    "start": 35.38,
+    "end": 37.57,
+    "text": "Payment opens only after approval."
+  },
+  {
+    "start": 37.99,
+    "end": 40.65,
+    "text": "Each diner funds exactly what they owe,"
+  },
+  {
+    "start": 40.65,
+    "end": 44.07,
+    "text": "or sponsors somebody else without changing the underlying obligation."
+  },
+  {
+    "start": 44.51,
+    "end": 46.7,
+    "text": "If £18.91 is still missing,"
+  },
+  {
+    "start": 46.7,
+    "end": 48.58,
+    "text": "settlement stays locked."
+  },
+  {
+    "start": 48.92,
+    "end": 51.33,
+    "text": "Once the full £53.95 arrives,"
+  },
+  {
+    "start": 51.33,
+    "end": 52.84,
+    "text": "the venue can be paid."
+  },
+  {
+    "start": 57.38,
+    "end": 59.55,
+    "text": "Stage Mode turns the same live table state"
+  },
+  {
+    "start": 59.55,
+    "end": 61.68,
+    "text": "into a room-readable progress board."
+  },
+  {
+    "start": 65.32,
+    "end": 67.45,
+    "text": "The contract protects both outcomes."
+  },
+  {
+    "start": 67.45,
+    "end": 70.05,
+    "text": "Exact funding unlocks settlement."
+  },
+  {
+    "start": 70.42,
+    "end": 73.05,
+    "text": "Cancellation or expiry pays the venue nothing,"
+  },
+  {
+    "start": 73.05,
+    "end": 75.7,
+    "text": "and opens refunds to each original contributor,"
+  },
+  {
+    "start": 75.7,
+    "end": 77.79,
+    "text": "including a sponsor."
+  },
+  {
+    "start": 83.39,
+    "end": 86.85,
+    "text": "Now switch from the £53.95 local sample"
+  },
+  {
+    "start": 86.85,
+    "end": 88.31,
+    "text": "to live evidence."
+  },
+  {
+    "start": 88.82,
+    "end": 92.65,
+    "text": "Bill 2 represents £48.50 on Monad Testnet,"
+  },
+  {
+    "start": 92.65,
+    "end": 94.8,
+    "text": "with a confirmed creation transaction."
+  },
+  {
+    "start": 95.29,
+    "end": 99.36,
+    "text": "Monad turns claims, approvals, sponsored payments and refunds"
+  },
+  {
+    "start": 99.36,
+    "end": 101.9,
+    "text": "into fast shared state for the whole table,"
+  },
+  {
+    "start": 101.9,
+    "end": 103.06,
+    "text": "without a central bill keeper."
+  },
+  {
+    "start": 105.31,
+    "end": 108.05,
+    "text": "The contract source has a Sourcify perfect match,"
+  },
+  {
+    "start": 108.05,
+    "end": 109.73,
+    "text": "and the public app is ready."
+  },
+  {
+    "start": 109.92,
+    "end": 111.74,
+    "text": "Scan to open live Bill 2."
+  }
+]

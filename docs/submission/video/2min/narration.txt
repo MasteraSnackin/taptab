@@ -1,0 +1,16 @@
+SUPERSEDED V2 NARRATION SOURCE — NOT THE CURRENT V3 SCRIPT
+Current V3 narration and timings are documented in v3/V3_PRODUCTION_PLAN.md.
+
+Splitting a restaurant bill still leaves one person paying everything and chasing friends later. Tap Tab replaces that awkward moment with a shared, verifiable flow where everyone handles their own part.
+
+The experience begins with a familiar pounds-first receipt. Diners claim a whole item or selected shares of wine, starters or a taxi, and the interface immediately shows each person's pound total.
+
+Anything left unclaimed is never forced onto the whole table. Only diners who opt into fair remainder share that value, so silence cannot become consent to pay.
+
+Each diner then votes for the tip. Tap Tab uses the median of those votes as the group result. Before payment opens, every participant must approve exactly the same split. Changing a claim, tip, participant or remainder choice clears those approvals.
+
+Funding is exact. People pay only their agreed amount, while a friend can sponsor another diner's remaining balance without changing who originally owed it. Overpayment is rejected, and settlement stays locked while even one penny remains. In a separate successful run, exact funding unlocks settlement.
+
+In the failed branch, cancelling or expiring an incomplete bill pays the venue nothing. Each contribution becomes claimable by the account that paid, including a sponsor, not the sponsored diner.
+
+Stage Mode presents the same participants, claims, approvals and funding progress in a projector-friendly view. This is TapTab's clearly labelled sample flow. Its Solidity contract is live on Monad Testnet at 0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198 with a Sourcify perfect source match. A real multi-wallet write, settlement and refund rehearsal remains to be recorded.

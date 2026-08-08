@@ -1,0 +1,221 @@
+{
+  "schema": "taptab-submission-evidence",
+  "version": 6,
+  "capturedAt": "2026-08-07T20:29:54.286Z",
+  "sourceCheckpoint": {
+    "commit": "27ecdb48ed9fbdd1fa50a8661aa39c1d7379cd4d",
+    "tree": "be4a471909432b94e7517cd5e1decde6da9aea3e",
+    "message": "Build TapTab judge-ready Monad Testnet demo",
+    "branch": "main",
+    "repositoryRemote": null,
+    "note": "The public Worker was deployed from the built application represented by this checkpoint. This manifest and the post-deployment public probe are added by the following evidence-only commit."
+  },
+  "toolchain": {
+    "node": "v24.14.0",
+    "npm": "11.9.0",
+    "application": "Next.js 16 / React 19 / TypeScript 5 / Vinext / Vite",
+    "contract": "Solidity 0.8.24 / Hardhat 2 / ethers 6"
+  },
+  "localVerification": {
+    "command": "npm run verify:local",
+    "result": "passed",
+    "log": {
+      "path": "docs/submission/verify-local-2026-08-07-v4.log",
+      "bytes": 46823,
+      "sha256": "c7b71a0a6cfbde7fdaa72627bf6195ddd653f44f984f82203d25b66041643b62"
+    },
+    "checks": {
+      "productionBuild": "passed",
+      "nodeTests": 205,
+      "playwrightTests": 27,
+      "contractTests": 79,
+      "totalTests": 311,
+      "localHardhatRehearsal": "passed",
+      "gasRegressionCeilings": "8 of 8 passed",
+      "typecheck": "passed",
+      "lint": "passed"
+    },
+    "postVideoChecks": {
+      "commands": [
+        "npm run lint -- --max-warnings=0",
+        "npm run typecheck",
+        "git diff --check"
+      ],
+      "result": "passed",
+      "note": "The complete gate log predates removal of one unused-variable warning in the V4 build script. The later zero-warning lint and typecheck passed; no application or contract runtime behaviour changed after the full gate."
+    },
+    "boundary": "The deterministic local gate uses the labelled sample, headless browsers and ephemeral Hardhat chain 31337. It is not public-chain transaction evidence."
+  },
+  "applicationArtifacts": [
+    {
+      "path": "app/TapTabApp.tsx",
+      "bytes": 147557,
+      "sha256": "d290673f17c6dc69259e9be70cf89db3792ef73303393dc3f988a84bfb3dd02d"
+    },
+    {
+      "path": "app/TapTabLivePanel.tsx",
+      "bytes": 157961,
+      "sha256": "eebcc882cb9e6997d869781dfd96e251b8262f85eab95b538f3ada0b12802236"
+    },
+    {
+      "path": "contracts/src/TapTab.sol",
+      "bytes": 39092,
+      "sha256": "ae6a15150b9e550936f75e75b13a984549e2d0ff47ff78681a30b63f01d06d39"
+    },
+    {
+      "path": "public/og.png",
+      "bytes": 910468,
+      "sha256": "428aec5d0e96700c294916b98768c9646c2ef5746248fd1774a1eeb891b07710"
+    }
+  ],
+  "deployment": {
+    "provider": "Cloudflare Workers",
+    "origin": "https://taptab.mythicmindlabs.workers.dev",
+    "canonicalBillUrl": "https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live",
+    "workerVersionId": "28fa6666-c9cc-4734-b465-1587f82d4946",
+    "workerVersionCreatedAt": "2026-08-07T18:48:42.557Z",
+    "trafficPercent": 100,
+    "sourceCommit": "27ecdb48ed9fbdd1fa50a8661aa39c1d7379cd4d",
+    "serverBundle": {
+      "bytes": 1009380,
+      "sha256": "7896b4c57c2cec45014fd8f605009ad3ea2759f193c86882613b618025768479"
+    },
+    "clientManifest": {
+      "bytes": 29919,
+      "sha256": "ddb7dda08ad2e22751f15a8aca37a82aded600046f23fb0a63e9fab95c62cdd9"
+    },
+    "publicProbe": {
+      "path": "docs/submission/public-preview-evidence.json",
+      "bytes": 5919,
+      "sha256": "604ebba1e6045eac79a432ff2e3b2c337b6306c51cb4ba0cc54ae6586b6472b9",
+      "pageStatus": 200,
+      "readinessStatus": 200,
+      "readinessChecksPassed": 5,
+      "browserConsoleErrors": 0,
+      "horizontalOverflow": false
+    },
+    "sitesConnector": {
+      "result": "unavailable",
+      "reason": "Sites is not enabled for this workspace",
+      "fallback": "Existing authenticated Cloudflare Worker deployment completed successfully"
+    }
+  },
+  "monadTestnet": {
+    "network": "Monad Testnet",
+    "chainId": 10143,
+    "contract": "0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198",
+    "sourceVerification": "Sourcify perfect match reported by MonadVision",
+    "deploymentEvidence": {
+      "path": "docs/submission/monad-testnet-deployment-evidence.json",
+      "bytes": 8933,
+      "sha256": "fae9c08225efd721556769f4c3ab83596f8ee1599233279f3e5e9ab8b6b453c2"
+    },
+    "multiWalletEvidence": {
+      "path": "docs/submission/monad-testnet-multiwallet-evidence.json",
+      "bytes": 23600,
+      "sha256": "5dbf6313b340fa9f299e735b91cba0d298c390c8998fcf5fe1bf1e9d1e7197a6",
+      "successfulContractTransactions": 31,
+      "successPath": "Bill 3: three wallets claimed, unanimously approved, exactly funded, settled and withdrew proceeds",
+      "failurePath": "Bill 4: two contributors funded, creator cancelled and both contributors claimed refunds",
+      "incompleteSettlementProof": "Historical eth_call at block 51738556 decoded BillNotFullyFunded",
+      "disclosedRetry": "One initial Bob funding transaction reverted after the RPC estimated 21000 gas; the explicit 50000-gas retry succeeded",
+      "privateKeysIncluded": false
+    },
+    "economicBoundary": "Testnet MON has no monetary value. GBP and USD displays are labelled mainnet MON references; bill-specific locked quotes and any Testnet scaling are disclosed."
+  },
+  "videoRelease": {
+    "master": {
+      "path": "docs/submission/video/2min/taptab-demo-2min.mp4",
+      "bytes": 7941645,
+      "sha256": "7c8895c78647136ea0bc7317c4a0d4c8b199f4243211b319114202a5429cc8e6",
+      "durationSeconds": 119,
+      "resolution": "1920x1080",
+      "frames": 3570,
+      "video": "H.264 yuv420p 30fps",
+      "audio": "AAC 48kHz stereo",
+      "integratedLoudnessLufs": -16.04,
+      "truePeakDbtp": -2.76,
+      "fullWindowSeconds": 75.967,
+      "continuousCaptureSeconds": 15,
+      "continuousCaptureFrames": 450,
+      "continuousCaptureInternalCuts": 0,
+      "magnifiedCropSeconds": 0,
+      "composition": "The full browser/application window is the default. Large adjacent callouts use gentle dimming without crop or magnification."
+    },
+    "subtitles": {
+      "path": "docs/submission/video/2min/taptab-demo-2min.srt",
+      "bytes": 2313,
+      "sha256": "ff7b6b5b049a29b71e1114e9665237bd89c193a3f9e7a0b38e18742648503ae1",
+      "cues": 31,
+      "lastCueEndSeconds": 111.74
+    },
+    "poster": {
+      "path": "docs/submission/video/2min/poster.jpg",
+      "bytes": 216069,
+      "sha256": "402a294e2bc16cce3912585b1d0310ab7713691965ebeee9b8a634bd6879ca1a"
+    },
+    "continuousCapture": {
+      "path": "docs/submission/video/2min/v5/capture/continuous-public-sample-15s.mp4",
+      "bytes": 1279802,
+      "sha256": "74836bee8192056caf8d75c6252f8b830416b68396ad0a593918738d034a237f",
+      "durationSeconds": 15,
+      "resolution": "1856x1000",
+      "framesPerSecond": 30,
+      "frames": 450,
+      "internalCuts": 0,
+      "walletWrite": false,
+      "actions": [
+        "show fair-remainder and tip controls",
+        "select 12.5% tip",
+        "review and approve",
+        "reopen tip controls",
+        "change tip to 10%",
+        "review the cleared consent state"
+      ],
+      "boundary": "Single public-sample browser stream with endpoint trimming only; no wallet write"
+    },
+    "explorerReplay": {
+      "transactionHash": "0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "url": "https://testnet.monadscan.com/tx/0xc232584b63ad27e7aa53b2526a2bcf8ebb6765bd8657cc804b7e76ec48e6d885",
+      "status": "Success",
+      "mode": "Historical replay; no new transaction broadcast"
+    },
+    "teaser": {
+      "path": "docs/submission/video/2min/v5/teaser/taptab-teaser-15s.mp4",
+      "bytes": 1164603,
+      "sha256": "e51f25efe97d41ebaf2b0fb80df7107774aa80a3e015f19f949bd4e58bc2cee1",
+      "durationSeconds": 15
+    },
+    "multiWalletEvidenceCut": {
+      "path": "docs/submission/video/2min/v5/evidence/taptab-multiwallet-evidence-30s.mp4",
+      "bytes": 2551765,
+      "sha256": "c118bbeaf80a617d595ef36881af1c1a279dbe1ac7cc8ce6bf8f694b7c7c80a2",
+      "durationSeconds": 30,
+      "boundary": "A concise visualisation of the sealed RPC record, not an uninterrupted recording of three wallet interfaces"
+    },
+    "qrDecodedFromCompressedMaster": true,
+    "qrDestination": "https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live",
+    "narration": "ElevenLabs Nora — Blackpool Product Guide, natural speed; unchanged from V4",
+    "narrationSha256": "39284fb8cc18679bda0b4188eabf3a60e583074f6fee2e05961a70d73305edf1",
+    "synchronisationIntegrity": {
+      "namedDiners": "Amina, Theo and Jules share the house red; You cover Theo's remainder",
+      "settledOutcome": "Bill 3",
+      "qrDestinationBill": "Bill 2",
+      "qrDestinationState": "Draft; created and publicly readable, not settled",
+      "sponsorshipBoundary": "Labelled local sample",
+      "sourceVerificationWording": "MonadVision reports · Sourcify perfect match",
+      "narrationAndCaptionsChanged": false
+    },
+    "speechFreeFinalHoldSeconds": 7.26,
+    "musicAndEffects": "Locally synthesised; existing music bed extended after 117 seconds for the final hold",
+    "sixtySecondCutCreated": false
+  },
+  "remainingExternalActions": [
+    "Send docs/submission/ELIGIBILITY_REQUEST.md and obtain written organiser confirmation because this implementation predates the event date",
+    "Configure and publish an authorised public Git repository; no Git remote is currently set",
+    "Choose a software licence",
+    "Obtain an independent smart-contract security review before any non-Testnet use",
+    "Complete physical-device, assistive-technology and real-user testing"
+  ],
+  "privacyAndTrustBoundary": "A contract address does not authenticate a venue. Wallet addresses, receipt metadata and transactions written onchain are public. Optional display names remain local unless explicitly disclosed."
+}
