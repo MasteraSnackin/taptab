@@ -824,7 +824,7 @@ as confirmed blockchain activity. Workspace selection is canonicalised in the
 URL, and the contract-backed panel is conditionally mounted only in live mode so
 sample use does not retain background chain reads.
 
-### Legacy CrowdCart coexistence
+### Legacy prototype coexistence
 
 Keeping the earlier group-purchase prototype reduced refactoring risk during
 development. It increases bundle, audit and maintenance surface and should be
@@ -851,7 +851,7 @@ removed or isolated before a public release.
 9. Add an indexer only if historic search becomes necessary; keep contract
    state authoritative.
 10. Complete keyboard, screen-reader, zoom and physical-device validation.
-11. Remove or place legacy CrowdCart code behind an explicit compatibility
+11. Remove or place legacy prototype code behind an explicit compatibility
    boundary.
 12. Define staging, rollback, incident response and release ownership before
    production use.

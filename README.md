@@ -12,10 +12,16 @@ Diners claim whole or shared receipt items, agree a group tip, fund only their
 allocation and settle through a smart contract on Monad Testnet. It removes the
 usual need for one person to pay the entire bill and chase everyone afterwards.
 
+[![Friends reacting to an equal restaurant bill split](docs/submission/media/bill-payment-highlight.gif)](https://www.youtube.com/watch?v=EYb9jnt2cv4)
+
+The equal split lands differently around the table. Short silent highlight
+from *Friends*, “Five Steaks and an Eggplant”. [Open the original
+clip](https://www.youtube.com/watch?v=EYb9jnt2cv4).
+
 The application is designed for diners, bill organisers and venues. It includes
 a fully local sample experience for demonstrations and a contract-backed live
 workspace when a trusted TapTab deployment and wallet provider are configured.
-The repository retains some legacy CrowdCart files; TapTab is the active product.
+TapTab is the active and supported product.
 
 **Public Monad Testnet application:**
 [open canonical live bill 2](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
@@ -40,17 +46,6 @@ The older Cloudflare Worker remains historical evidence for source checkpoint
 > evidence of Testnet behaviour, not a production security review.
 > Testnet MON has no monetary value; the GBP/USD display is a mainnet MON
 > reference, not a redemption promise.
-
-> [!IMPORTANT]
-> The official Monad Blitz
-> [rules](https://monad-foundation.notion.site/Rules-Guidelines-IMPORTANT-PLEASE-READ-73b6367594f2833e952901112ad5c959?pvs=25)
-> require a fresh event-day project, no more than four team members, a public
-> repository and an operational Monad Testnet deployment. The official
-> [submission process](https://monad-foundation.notion.site/Submission-Process-cc66367594f2837c898701aabd948402?pvs=25)
-> requires a public fork of the organiser repository. This implementation
-> existed before the stated event date. Obtain written organiser guidance before
-> treating it as an eligible submission, and do not describe pre-event work as
-> event-day development.
 
 The concise judging bundle is in
 [docs/submission/README.md](docs/submission/README.md). It includes the pitch,
@@ -85,14 +80,6 @@ evidence, and the remaining submission gaps separate.
 ## Demonstration production record
 
 [![Watch the TapTab 2 minute 30 second demo](docs/submission/video/2min30/taptab-demo-2min30-poster.png)](docs/submission/video/2min30/taptab-demo-2min30.mp4)
-
-The current fallback demonstration is exactly `150.000` seconds at 1920 × 1080
-and 30 fps. It uses ElevenLabs' synthetic **Nora — Blackpool Product Guide**
-voice at natural speed, burnt-in captions, an original music bed and a
-speech-free evidence hold. The complete application views remain visible
-without magnified crops. Purple identifies the deterministic local sample;
-green identifies verified public Monad Testnet reads; amber identifies the
-protected cancellation/refund branch.
 
 The film proves the Vercel deployment can read chain `10143`, the trusted
 contract and canonical Bill `2`. It then displays the genuine historical Bill
@@ -296,9 +283,7 @@ does not present them as confirmed Monad transactions.
 
 A live bill can be selected with a trusted contract and positive bill ID:
 
-~~~text
-https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live
-~~~
+[Open canonical live bill `2`](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
 
 Shared links cannot replace the contract address built into the application.
 
@@ -419,8 +404,8 @@ The root <code>.env.local</code> and <code>contracts/.env</code> files are ignor
 - **Local demo:** run <code>npm run dev</code>, then open
   [http://localhost:3000](http://localhost:3000).
 - **Public Monad Testnet application:**
-  [open canonical bill `2`](https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
-  The [readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+  [open canonical bill `2`](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
+  The [readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
   passes against chain `10143`, the deployed bytecode and bill `2`.
 - **Local judge sequence:** follow
   [docs/judging/LOCAL_RUNBOOK.md](docs/judging/LOCAL_RUNBOOK.md), open the
@@ -472,7 +457,7 @@ curl http://localhost:3000/api/health/ready
 ~~~
 
 The public
-[readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+[readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
 currently returns HTTP <code>200</code>. An unconfigured or unhealthy build fails
 closed with HTTP <code>503</code>, a stable reason code and
 <code>retry-after: 10</code>, without exposing its RPC URL or raw provider error.
@@ -611,7 +596,7 @@ been applied to the judged toolchains.
 - Complete keyboard, screen-reader, zoom and physical-device testing.
 - Promote the draft captures to clean revision-linked evidence.
 - Evaluate a stable-value settlement asset for use beyond the hackathon.
-- Retire the documented CrowdCart compatibility aliases once downstream legacy
+- Retire the documented legacy compatibility aliases once downstream legacy
   imports are no longer needed.
 
 ## Contributing

@@ -1,9 +1,10 @@
-# CrowdCart contracts
+# TapTab contract workspace
 
-`CrowdCart.sol` is a dependency-free group-purchase escrow for the CrowdCart
-demo. A merchant publishes ascending buyer thresholds with falling unit prices.
-Each buyer deposits the first tier's maximum price. After the deadline (or once
-sold out), everyone receives the lowest price unlocked by the final buyer count.
+`TapTab.sol` is the active shared-bill contract. This workspace also retains a
+dependency-free legacy group-purchase escrow. In that prototype, a merchant
+publishes ascending buyer thresholds with falling unit prices. Each buyer
+deposits the first tier's maximum price. After the deadline (or once sold out),
+everyone receives the lowest price unlocked by the final buyer count.
 
 This is hackathon software and has not received a professional security audit.
 
@@ -65,7 +66,7 @@ open-ended fuzzer or formal verification.
 The final 7 August 2026 local gate passed all 89 contract tests.
 
 After compilation, the frontend-ready ABI is at
-`artifacts/src/CrowdCart.sol/CrowdCart.json` in the `abi` property.
+`artifacts/src/TapTab.sol/TapTab.json` in the `abi` property.
 
 ## TapTab local multi-account rehearsal
 
@@ -150,24 +151,8 @@ operation. Back up the ignored `.env` securely: the command never prints a
 private key, seed phrase or recovery material, so a lost file cannot be
 recovered by TapTab. Fund only the printed public address with Testnet MON.
 
-Then deploy CrowdCart with:
-
-```sh
-npm run deploy:monad
-```
-
-For a pitch-ready deployment that also creates the three-minute London Pizza Drop,
-run:
-
-```sh
-npm run deploy:demo
-```
-
-The script prints `?contract=...&deal=1`. Open CrowdCart with those URL
-parameters or paste the values into **Presenter controls → Link contract**. The
-audience QR code will then carry the same live contract and deal automatically.
-Set `DEMO_DURATION_SECONDS` immediately before the pitch if a different window
-is needed.
+The supported TapTab deployment command and its configuration are documented
+under [One-command Table 7 deployment](#one-command-table-7-deployment) below.
 
 `.env` is ignored. Never commit or share a private key or seed phrase. The
 deployment script prints the deployer and new contract addresses.

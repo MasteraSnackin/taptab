@@ -125,7 +125,7 @@ The following work was assessed but is not represented as complete:
 3. Upgrade Vinext and the Hardhat/plugin toolchain only in separate compatibility
    branches. Both proposed automated remediations cross release boundaries and
    require the full gate, not a forced audit rewrite.
-4. Split the largest interface components and retire the remaining CrowdCart
+4. Split the largest interface components and retire the remaining legacy
    compatibility layer after the judging freeze.
 5. Add shared cache, monitoring and incident telemetry only after the production
    hosting, privacy and ownership model is decided.
