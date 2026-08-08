@@ -87,7 +87,16 @@ evidence, and the remaining submission gaps separate.
 
 ## Demonstration production record
 
-[![Watch the TapTab 2 minute 30 second demo](docs/submission/video/2min30/taptab-demo-2min30-poster.png)](docs/submission/video/2min30/taptab-demo-2min30.mp4)
+### Watch the complete demo
+
+[![TapTab demonstration poster — click to play the full 2 minute 30 second video](docs/submission/video/2min30/taptab-demo-2min30-poster.png)](https://raw.githubusercontent.com/MasteraSnackin/taptab/main/docs/submission/video/2min30/taptab-demo-2min30.mp4)
+
+**[Watch or download the full 2 minute 30 second MP4](https://raw.githubusercontent.com/MasteraSnackin/taptab/main/docs/submission/video/2min30/taptab-demo-2min30.mp4)**
+· 1920 × 1080 · 30 fps · 8.6 MiB
+
+[Captions](docs/submission/video/2min30/taptab-demo-2min30.srt) ·
+[Video file on GitHub](https://github.com/MasteraSnackin/taptab/blob/main/docs/submission/video/2min30/taptab-demo-2min30.mp4) ·
+[Quality and evidence report](docs/submission/video/2min30/QA_SUMMARY.md)
 
 The current fallback demonstration is exactly `150.000` seconds at 1920 × 1080
 and 30 fps. It uses ElevenLabs' synthetic **Nora — Blackpool Product Guide**
