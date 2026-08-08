@@ -1,8 +1,8 @@
 # TapTab — Nobody fronts the bill
 
 ![Node.js](https://img.shields.io/badge/Node.js-%E2%89%A522.13-339933?logo=nodedotjs&logoColor=white)
-![Network](https://img.shields.io/badge/network-Monad%20Testnet-836EF9)
-![Tests](https://img.shields.io/badge/tests-375%20passing-2E7D32)
+![Network](https://img.shields.io/badge/network-Monad%20Testnet-0E6574)
+![Tests](https://img.shields.io/badge/tests-319%20publish%20checks-2E7D32)
 ![Licence](https://img.shields.io/badge/licence-not%20specified-6B7280)
 
 ## Description
@@ -18,19 +18,20 @@ workspace when a trusted TapTab deployment and wallet provider are configured.
 The repository retains some legacy CrowdCart files; TapTab is the active product.
 
 **Public Monad Testnet application:**
-[open canonical live bill 2](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
+[open canonical live bill 2](https://taptab-eosin.vercel.app/?workspace=live&contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#bill).
 The configured deployment is contract
 [`0xa2fb…A198`](https://testnet.monadscan.com/address/0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198)
 on chain `10143`; the public
 [readiness check](https://taptab-eosin.vercel.app/api/health/ready)
 validates its bytecode and canonical bill `2`.
 
-The current Vercel production deployment is `dpl_H4rRMxPLEBN3tg12Kp3sbxQxS9Sx`.
-Its root route, readiness route and canonical bill were rechecked on 8 August
-2026; the retained result is in
+The stable Vercel alias is the canonical judge URL. Its root route, readiness
+route and canonical bill were rechecked on 8 August 2026. Vercel creates a new
+immutable deployment identifier for each release, so links in this README use
+the stable alias. The time-stamped read-path boundary is recorded separately in
 [the Vercel deployment evidence](docs/submission/VERCEL_DEPLOYMENT_EVIDENCE.md).
 The older Cloudflare Worker remains historical evidence for source checkpoint
-`27ecdb4`; it is no longer the canonical judge URL.
+`27ecdb4`; it is no longer the canonical application URL.
 
 > [!WARNING]
 > TapTab is unaudited hackathon software. Use it only with Testnet funds. The
@@ -62,6 +63,7 @@ captioned cut and local evidence manifest.
 - [Submission Bundle](#submission-bundle)
 - [Demonstration Production Record](#demonstration-production-record)
 - [Features](#features)
+- [Contract Rules and Privacy](#contract-rules-and-privacy)
 - [Tech Stack](#tech-stack)
 - [Architecture Overview](#architecture-overview)
 - [Installation](#installation)
@@ -71,9 +73,10 @@ captioned cut and local evidence manifest.
 - [Screenshots / Demo](#screenshots--demo)
 - [API / CLI Reference](#api--cli-reference)
 - [Tests](#tests)
+- [Known Limitations](#known-limitations)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
+- [Licence](#licence)
 - [Contact / Support](#contact--support)
 
 ## Submission Bundle
@@ -90,8 +93,9 @@ The current fallback demonstration is exactly `150.000` seconds at 1920 × 1080
 and 30 fps. It uses ElevenLabs' synthetic **Nora — Blackpool Product Guide**
 voice at natural speed, burnt-in captions, an original music bed and a
 speech-free evidence hold. The complete application views remain visible
-without magnified crops. Purple identifies the deterministic local sample;
-green identifies verified public Monad Testnet reads; amber identifies the
+without magnified crops. The recording predates the current teal, no-purple UI
+refresh: purple in the recording identifies the deterministic local sample,
+green identifies verified public Monad Testnet reads and amber identifies the
 protected cancellation/refund branch.
 
 The film proves the Vercel deployment can read chain `10143`, the trusted
@@ -164,6 +168,47 @@ claim that the corresponding binaries are downloadable from this repository.
 - Block-pinned Multicall snapshots, chain-time expiry decisions and inactive-tab
   polling suspension.
 - Installable PWA behaviour with deliberately restricted service-worker caching.
+- A stateful eight-step live Testnet guide covering wallet/network readiness,
+  bill entry, quote review, bill creation, participant invitations, claims,
+  approval, payment, settlement and explorer proof.
+- Editable merchant, receipt-row, share-count and participant-wallet fields in
+  the live host journey.
+- Bill-scoped proof checks that prevent an old bill or stale local transaction
+  from satisfying the current explorer-evidence step.
+
+## Contract Rules and Privacy
+
+`contracts/src/TapTab.sol` settles native MON through bounded state transitions.
+Its published limits are:
+
+| Limit | Value |
+| --- | ---: |
+| Participants per bill | 32 |
+| Receipt items per bill | 32 |
+| Shares per item | 32 |
+| Total shares per bill | 128 |
+| Maximum tip vote | 3,000 basis points (30%) |
+
+Every claim, preference or participant mutation advances the split version and
+invalidates earlier approvals. Funding opens only after every joined participant
+approves the current digest. Integer dust is assigned deterministically, each
+beneficiary and bill is protected against overfunding, and settlement cannot
+occur before the exact total is funded. On cancellation or expiry, refunds
+belong to the wallets that actually contributed, including sponsors. Venue
+proceeds and refunds are withdrawn through pull payments protected by a local
+re-entrancy guard.
+
+Before a write, the client checks the trusted contract and chain, simulates the
+exact call, estimates gas and fees, validates the wallet balance with a 25% gas
+limit buffer, then repeats simulation immediately before submission. These
+checks improve error handling; the contract remains the security boundary.
+
+Live receipt metadata and wallet participation are public onchain. Optional
+display names remain in the current browser and are excluded from payment links
+and venue exports unless the exporter explicitly opts in. A recovery pack may
+contain verified receipt rows, share counts, trusted bill context, quote
+provenance and public transaction evidence; it does not restore names,
+credentials, payments or a supposedly fresh price.
 
 ## Tech Stack
 
@@ -282,22 +327,41 @@ npm run start
 
 Sample actions are local simulations. The interface labels them as previews and
 does not present them as confirmed Monad transactions.
+Sample state exists only in the current browser session. A sample payment link
+can select a demonstration participant, but it does not serialise the current
+phase, claims, approvals or payments into the URL.
 
 ### Use a live Monad Testnet bill
 
-1. Configure the public frontend variables described below.
-2. Start or publish the application over its registered HTTPS origin.
-3. Open the Monad Testnet workspace.
-4. Connect a wallet and switch to Monad Testnet when prompted.
-5. Create a bill or open a trusted bill link.
-6. Invite participants, collect claims and obtain unanimous approval.
-7. Open funding, collect exact contributions and settle the bill.
-8. Retain the explorer links and settlement export as demonstration evidence.
+1. Open the live workspace and choose **Run live Testnet demo**.
+2. Sign in through an available Reown wallet, email or social route, then switch
+   the connected account to Monad Testnet chain `10143`.
+3. Expand **Live receipt details** and fill in the merchant, item, price and
+   share fields. The current fields must match the bill that is created before
+   later guide steps can complete.
+4. Review the GBP-to-MON quote, its provenance and the public-metadata warning.
+5. Open the organiser controls, confirm the payee and deadline, then create the
+   bill. This is the first wallet-approved Testnet write and produces a
+   `BillCreated` transaction.
+6. Fill in the participant-wallet field, invite those addresses, then let each
+   participant join, claim available item shares and approve the current split.
+   A participant with available shares is guided to claim before approving.
+7. After unanimous approval, open funding, pay personal shares or sponsor
+   another participant, settle the exactly funded bill and withdraw venue
+   proceeds when appropriate.
+8. Open **Confirmed Testnet activity** or the guide's proof step to show the
+   current bill's transaction hash, block and Monad explorer link.
+
+Every contract write requires the connected wallet to approve a transaction.
+The application cannot sign on the user's behalf. A wallet must hold enough
+Testnet MON for the requested contribution and network fees. The sample
+workspace remains the wallet-free fallback when a signed live run is not
+available.
 
 A live bill can be selected with a trusted contract and positive bill ID:
 
 ~~~text
-https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live
+https://taptab-eosin.vercel.app/?workspace=live&contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#bill
 ~~~
 
 Shared links cannot replace the contract address built into the application.
@@ -419,8 +483,8 @@ The root <code>.env.local</code> and <code>contracts/.env</code> files are ignor
 - **Local demo:** run <code>npm run dev</code>, then open
   [http://localhost:3000](http://localhost:3000).
 - **Public Monad Testnet application:**
-  [open canonical bill `2`](https://taptab.mythicmindlabs.workers.dev/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
-  The [readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+  [open canonical bill `2`](https://taptab-eosin.vercel.app/?workspace=live&contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#bill).
+  The [readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
   passes against chain `10143`, the deployed bytecode and bill `2`.
 - **Local judge sequence:** follow
   [docs/judging/LOCAL_RUNBOOK.md](docs/judging/LOCAL_RUNBOOK.md), open the
@@ -472,7 +536,7 @@ curl http://localhost:3000/api/health/ready
 ~~~
 
 The public
-[readiness endpoint](https://taptab.mythicmindlabs.workers.dev/api/health/ready)
+[readiness endpoint](https://taptab-eosin.vercel.app/api/health/ready)
 currently returns HTTP <code>200</code>. An unconfigured or unhealthy build fails
 closed with HTTP <code>503</code>, a stable reason code and
 <code>retry-after: 10</code>, without exposing its RPC URL or raw provider error.
@@ -548,11 +612,23 @@ cd contracts
 npm test
 ~~~
 
-In the current uncommitted working tree, a complete 8 August 2026 gate run
-reported 223 passing application tests, 63 passing five-profile Playwright
-tests with 27
-intentional profile skips, and 89 passing contract tests: 375
-passing checks in total. These tests cover
+The 8 August 2026 publication check for the current live-guide branch reported:
+
+- 225 passing application tests and no failures;
+- 89 passing contract tests and no failures;
+- the focused live-guide Playwright case passing on all five desktop, tablet
+  and mobile profiles; and
+- strict TypeScript passing, with ESLint reporting no errors and one existing
+  unused-variable warning in the historical video build script.
+
+Those results are the `319` checks represented by the badge. The focused
+five-profile browser run is not a substitute for the complete Playwright suite.
+The last retained complete local gate was completed before the current
+eight-step guide was added. It reported 223 application tests, 63 Playwright
+passes with 27 intentional profile skips, and 89 contract tests: 375 passing
+checks in total.
+
+Together these tests cover
 allocation arithmetic, approval invalidation, sponsorship, settlement
 protection, refunds, payee safety, exact claim identity, settlement-evidence
 integrity, bill-wide GBP penny conservation, contribution-ledger sponsorship
@@ -572,18 +648,18 @@ five terminal outcomes, the original deterministic invariant scenario and the
 64,000-byte metadata boundary. Passing tests are not a professional security
 or accessibility audit, an open-ended fuzz campaign or formal verification.
 
-That same <code>npm run verify:local</code> run also passed the guarded
+The retained complete <code>npm run verify:local</code> run also passed the guarded
 multi-account Hardhat rehearsal, the local gas-ceiling benchmark and Playwright
 checks at 1280×720 desktop, 812×900 and 768×1024 tablet, and 430×932 and
 390×844 mobile sizes. Generated local addresses, hashes and
 gas figures are not included in the test badge and must not be presented as
 Monad evidence or fee forecasts.
 
-The `375` result is a current working-tree observation, not a clean
-revision-linked release record. The retained
+The `375` result is an older working-tree observation, not a clean
+revision-linked release record for the current live-guide branch. The retained
 [submission evidence manifest](docs/submission/evidence-manifest.json) remains
 the historical `311`-test manifest for the older public deployment checkpoint;
-the two must not be presented as the same build.
+none of these three checkpoints should be presented as the same build.
 
 Dependency audits are recorded separately from behaviour tests. The web
 package has zero reported production findings; its full development graph has
@@ -594,12 +670,40 @@ development-tool findings. The containment and upgrade gates are documented in
 [contracts/SECURITY.md](contracts/SECURITY.md). No blind forced remediation has
 been applied to the judged toolchains.
 
+## Known Limitations
+
+- TapTab is Testnet-only, unaudited hackathon software. It must not be used with
+  real funds or presented as production payment infrastructure.
+- The latest interface supports a complete signed-wallet journey, but no fresh
+  wallet-approved transaction has been recorded against that exact Vercel
+  release. The public Bill `3` settlement and Bill `4` refund evidence are
+  genuine historical Monad Testnet transactions.
+- The Vercel alias is operational, but the retained deployment evidence is a
+  time-stamped read-path snapshot rather than a source-commit attestation for
+  every later UI-only release.
+- A full live settlement normally needs several funded participant wallets or
+  deliberate wallet hand-offs. Email and social sign-in availability depends on
+  the configured Reown project; TapTab does not provide gas sponsorship.
+- Receipt OCR is assistive. The host must verify merchant, item, price and share
+  fields before publishing them; confirmed live receipt metadata and wallet
+  addresses are public onchain.
+- Optional names are device-local and are not synchronised across browsers.
+  There is no application database or account-recovery service.
+- The fallback video shows the earlier purple sample vocabulary and replays a
+  historical successful write. The current application itself uses the teal,
+  navy, green and amber palette.
+- Automated checks do not establish accessibility conformance, formal
+  verification, production performance, monitoring coverage or independent
+  contract security.
+- No licence file is present, so normal copyright restrictions apply.
+
 ## Roadmap
 
 - Resolve Monad Blitz fresh-project eligibility with the organisers.
-- Publish a compliant repository and reproducible clean-clone build.
-- Redeploy the current verified frontend and regenerate revision-linked public
-  evidence.
+- Obtain the organiser fork/ruling required for an eligible submission and
+  verify a clean unauthenticated clone.
+- Record a fresh wallet-approved journey against the current Vercel release and
+  append its bill-scoped transaction evidence.
 - Preserve reproducible deployment and source-match evidence against an
   intentional clean repository revision.
 - Extend the bounded ten-seed stateful campaign into sustained CI fuzzing and
@@ -609,7 +713,8 @@ been applied to the judged toolchains.
 - Upgrade Vinext and the Hardhat/plugin toolchain only in isolated compatibility
   branches with the full gate retained.
 - Complete keyboard, screen-reader, zoom and physical-device testing.
-- Promote the draft captures to clean revision-linked evidence.
+- Replace the earlier-purple fallback recording with a clean, revision-linked
+  capture of the current teal interface.
 - Evaluate a stable-value settlement asset for use beyond the hackathon.
 - Retire the documented CrowdCart compatibility aliases once downstream legacy
   imports are no longer needed.
@@ -630,7 +735,7 @@ for proposed changes:
 Do not commit private keys, seed phrases, <code>.env</code> files, production receipt data
 or personal participant information.
 
-## License
+## Licence
 
 **Licence:** <code>ADD_LICENCE</code>.
 
@@ -640,10 +745,11 @@ absence of a licence, normal copyright restrictions apply.
 
 ## Contact / Support
 
-- **Maintainer:** not supplied in this workspace.
-- **GitHub profile or repository:** not configured.
+- **Maintainer:** repository owner `MasteraSnackin`; no personal name is
+  published in this workspace.
+- **Repository:** [MasteraSnackin/taptab](https://github.com/MasteraSnackin/taptab).
 - **Email:** not configured.
-- **Issue tracker:** not configured.
+- **Issue tracker:** [GitHub issues](https://github.com/MasteraSnackin/taptab/issues).
 
 For contract or payment defects, include the network, contract address, bill ID,
 transaction hash and exact reproduction steps. Never include a private key or
