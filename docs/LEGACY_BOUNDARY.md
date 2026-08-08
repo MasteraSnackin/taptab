@@ -8,35 +8,29 @@ The active contract is `contracts/src/TapTab.sol`.
 
 ## Retained compatibility surface
 
-The following files belong to the earlier CrowdCart group-purchase prototype
-and are not imported by either active route:
-
-- `app/CrowdCartApp.tsx`
-- `app/crowdcart-chain.ts`
-- `app/buyer-storage.ts`
-- `contracts/src/CrowdCart.sol`
-- `contracts/scripts/deploy.cjs`
-- `contracts/scripts/deploy-demo.cjs`
-- `contracts/test/CrowdCart.test.cjs`
+Several files belong to an earlier group-purchase prototype and are not
+imported by either active route. They are limited to the archived application,
+its chain and storage helpers, a historical wallet-provider filename, a legacy
+Solidity contract, its deployment scripts and focused tests.
 
 Their focused tests remain in the repository as regression evidence for that
-retained code. CrowdCart deployment scripts are legacy-only and must not be used
-as TapTab deployment evidence.
+retained code. Legacy deployment scripts must not be used as TapTab deployment
+evidence.
 
-`app/wallet/CrowdCartWalletProvider.tsx` retains its historical filename so
-existing imports and source-level regression tests do not break. Its canonical
-API is now `TapTabWalletProvider`, `useTapTabWallet`, `TapTabWallet` and
-`TapTabWalletStatus`. CrowdCart-named exports are compatibility aliases used only
-by the archived application. New TapTab code must import the TapTab names through
-`app/wallet/TapTabWalletProvider.tsx` or `app/wallet/index.ts`.
+The retained wallet provider keeps its historical filename so existing imports
+and source-level regression tests do not break. Its canonical API is now
+`TapTabWalletProvider`, `useTapTabWallet`, `TapTabWallet` and
+`TapTabWalletStatus`. Legacy-named exports are compatibility aliases used only
+by the archived application. New TapTab code must import the TapTab names
+through `app/wallet/TapTabWalletProvider.tsx` or `app/wallet/index.ts`.
 
 ## Why the legacy files remain
 
 Removing the old application and contract is a separate destructive migration:
 it changes historical tests, package scripts and potentially deployment
 workflows. Keeping it behind an explicit boundary avoids mixing that deletion
-with the TapTab hackathon implementation. It does not make CrowdCart part of the
-TapTab judging claim or the supported user journey.
+with the TapTab hackathon implementation. It does not make the legacy prototype
+part of the TapTab judging claim or the supported user journey.
 
 Before a public production release, remove the legacy files and scripts in a
 dedicated change, update package metadata and contract documentation, then prove

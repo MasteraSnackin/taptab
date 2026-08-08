@@ -42,7 +42,7 @@ recent Git history and relevant automated tests.
 
 Recent history was inspected:
 
-- `ad27ef8` — initial CrowdCart prototype;
+- `ad27ef8` — initial group-purchase prototype;
 - `699c2d4` — GBP/USD price estimates; and
 - `776bd3a` — documentation and local quality audit.
 

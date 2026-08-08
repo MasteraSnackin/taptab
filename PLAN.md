@@ -72,7 +72,7 @@
 - Receipt files are checked for type signatures and bounded decoded dimensions
   before OCR, and price failures carry privacy-safe request identifiers.
 - Active TapTab wallet APIs are isolated behind canonical names while retained
-  CrowdCart exports are explicitly documented compatibility aliases.
+  legacy exports are explicitly documented compatibility aliases.
 - Public metadata uses the validated configured origin rather than request host
   headers, and copied environment templates remain genuinely unconfigured.
 - Local judge runbook and feature-freeze policy.
@@ -103,7 +103,7 @@
   reverted and refresh-recovered transaction receipts.
 - Upgrade Vinext and the Hardhat/plugin toolchain only in isolated compatibility
   branches with the full regression gate retained.
-- Split the largest interface components and retire the remaining CrowdCart
+- Split the largest interface components and retire the remaining legacy
   compatibility surface after the judging freeze.
 - Design shared cache, monitoring and incident telemetry only after the intended
   hosting and privacy model is chosen.

@@ -21,7 +21,7 @@ clip](https://www.youtube.com/watch?v=EYb9jnt2cv4).
 The application is designed for diners, bill organisers and venues. It includes
 a fully local sample experience for demonstrations and a contract-backed live
 workspace when a trusted TapTab deployment and wallet provider are configured.
-The repository retains some legacy CrowdCart files; TapTab is the active product.
+TapTab is the active and supported product.
 
 **Public Monad Testnet application:**
 [open canonical live bill 2](https://taptab-eosin.vercel.app/?contract=0xa2fb0B3bf41B0B50687f4807e8a1ccc346FAA198&bill=2#live).
@@ -46,17 +46,6 @@ The older Cloudflare Worker remains historical evidence for source checkpoint
 > evidence of Testnet behaviour, not a production security review.
 > Testnet MON has no monetary value; the GBP/USD display is a mainnet MON
 > reference, not a redemption promise.
-
-> [!IMPORTANT]
-> The official Monad Blitz
-> [rules](https://monad-foundation.notion.site/Rules-Guidelines-IMPORTANT-PLEASE-READ-73b6367594f2833e952901112ad5c959?pvs=25)
-> require a fresh event-day project, no more than four team members, a public
-> repository and an operational Monad Testnet deployment. The official
-> [submission process](https://monad-foundation.notion.site/Submission-Process-cc66367594f2837c898701aabd948402?pvs=25)
-> requires a public fork of the organiser repository. This implementation
-> existed before the stated event date. Obtain written organiser guidance before
-> treating it as an eligible submission, and do not describe pre-event work as
-> event-day development.
 
 The concise judging bundle is in
 [docs/submission/README.md](docs/submission/README.md). It includes the pitch,
@@ -617,7 +606,7 @@ been applied to the judged toolchains.
 - Complete keyboard, screen-reader, zoom and physical-device testing.
 - Promote the draft captures to clean revision-linked evidence.
 - Evaluate a stable-value settlement asset for use beyond the hackathon.
-- Retire the documented CrowdCart compatibility aliases once downstream legacy
+- Retire the documented legacy compatibility aliases once downstream legacy
   imports are no longer needed.
 
 ## Contributing
