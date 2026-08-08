@@ -81,14 +81,6 @@ evidence, and the remaining submission gaps separate.
 
 [![Watch the TapTab 2 minute 30 second demo](docs/submission/video/2min30/taptab-demo-2min30-poster.png)](docs/submission/video/2min30/taptab-demo-2min30.mp4)
 
-The current fallback demonstration is exactly `150.000` seconds at 1920 × 1080
-and 30 fps. It uses ElevenLabs' synthetic **Nora — Blackpool Product Guide**
-voice at natural speed, burnt-in captions, an original music bed and a
-speech-free evidence hold. The complete application views remain visible
-without magnified crops. Purple identifies the deterministic local sample;
-green identifies verified public Monad Testnet reads; amber identifies the
-protected cancellation/refund branch.
-
 The film proves the Vercel deployment can read chain `10143`, the trusted
 contract and canonical Bill `2`. It then displays the genuine historical Bill
 `3` settlement receipt with `Success`, explicitly labelled as a replay with no
